@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="client">
+
+	<select id="selectStudentInfo" resultType="hashmap" parameterType="Integer">
+		<![CDATA[
+			SELECT
+			    *
+			FROM
+			    student
+			WHERE
+				student_id = #{student_id}
+		]]>
+	</select>
+	<select id="selectStudentPassword" resultType="String" parameterType="Integer">
+		<![CDATA[
+			SELECT itemname FROM hairweb.item where itemprice=#{itemprice};
+		]]>
+	</select>
+	<select id="selectStudentList" resultType="hashmap">
+		<![CDATA[
+			SELECT
+			    s.*, p.name as 'professor'
+			FROM
+			    student s, professor p
+			WHERE
+				s.professor_id = p.professor_id
+		]]>
+	</select>
+	<select id="selectStudentEnrollList" resultType="java.util.LinkedHashMap" parameterType="Integer">
+		<![CDATA[
+			SELECT
+			    *
+			FROM
+			    course
+			WHERE
+				course_id in ( 
+				SELECT 
+					course_id 
+				FROM 
+					enroll 
+				WHERE 
+					student_id = #{student_id} )
+			GROUP BY
+				course_name
+				
+		]]>
+	</select>
+	<select id="selectObjectiveQuickPollList" resultType="java.util.LinkedHashMap" parameterType="String">
+		<![CDATA[
+			SELECT
+			    o.example1, o.example2, o.example3, o.example4, o.question_answer, q.*
+			FROM
+			    ObjectiveQuestion o, QuickPollQuestion q
+			WHERE
+				q.question_type = 2 AND q.course_id = #{course_id} AND q.question_id = o.objective_question_id
+		]]>
+	</select>
+	<select id="selectSubjectiveQuickPollList" resultType="java.util.LinkedHashMap" parameterType="String">
+		<![CDATA[
+			SELECT
+			    s.question_answer, q.*
+			FROM
+			    SubjectiveQuestion s, QuickPollQuestion q 
+			WHERE
+				q.question_type = 3 AND q.course_id = #{course_id} AND q.question_id = s.subjective_question_id
+		]]>
+	</select>
+</mapper>

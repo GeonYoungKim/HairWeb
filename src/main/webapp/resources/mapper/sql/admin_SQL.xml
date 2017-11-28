@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="professor">
+	
+	<select id="selectProfessorPassword" resultType="String" parameterType="Integer">
+		<![CDATA[
+			SELECT bookname from book where booknum=#{booknum};
+		]]>
+	</select>
+	<select id="selectProfessorList" resultType="hashmap" parameterType="Integer">
+		<![CDATA[
+			SELECT
+			    *
+			FROM
+			    professor
+			WHERE
+				professor_id = #{professor_id}
+		]]>
+	</select>
+	<select id="selectMenteeList" resultType="hashmap" parameterType="Integer">
+		<![CDATA[
+			SELECT
+			    *
+			FROM
+			    student
+			WHERE
+				professor_id = #{professor_id}
+		]]>
+	</select>
+	<select id="selectObjectiveQuestionList" resultType="java.util.LinkedHashMap" parameterType="String">
+		<![CDATA[
+			SELECT
+			    *
+			FROM
+			    ObjectiveQuestion
+			WHERE
+				course_id = #{course_id}
+		]]>
+	</select>
+	<select id="selectSubjectiveQuestionList" resultType="java.util.LinkedHashMap" parameterType="String">
+		<![CDATA[
+			SELECT
+			    *
+			FROM
+			    SubjectiveQuestion
+			WHERE
+				course_id = #{course_id}
+		]]>
+	</select>
+	<select id="selectObjectiveQuickPollList" resultType="java.util.LinkedHashMap" parameterType="String">
+		<![CDATA[
+			SELECT
+			    o.example1, o.example2, o.example3, o.example4, o.question_answer, q.*
+			FROM
+			    ObjectiveQuestion o, QuickPollQuestion q
+			WHERE
+				q.question_type = 2 AND q.course_id = #{course_id} AND q.question_id = o.objective_question_id
+		]]>
+	</select>
+	<select id="selectSubjectiveQuickPollList" resultType="java.util.LinkedHashMap" parameterType="String">
+		<![CDATA[
+			SELECT
+			    s.question_answer, q.*
+			FROM
+			    SubjectiveQuestion s, QuickPollQuestion q 
+			WHERE
+				q.question_type = 3 AND q.course_id = #{course_id} AND q.question_id = s.subjective_question_id
+		]]>
+	</select>
+	<select id="selectResultListForQuickPollAnswer" resultType="hashmap" parameterType="Integer">
+		<![CDATA[
+			SELECT
+			    *
+			FROM
+			    quickpollanswer
+			WHERE
+				quickpoll_question_id = #{quickpoll_question_id}
+		]]>
+	</select> 
+	<select id="selectCourseList" resultType="java.util.LinkedHashMap" parameterType="Integer">
+		<![CDATA[
+			SELECT
+			    *
+			FROM
+			    course
+			WHERE
+				professor_id = #{professor_id} 
+		]]>
+	</select>
+	<select id="selectAnswerListForCourse" resultType="java.util.LinkedHashMap" parameterType="String">
+		<![CDATA[
+			SELECT
+				 * 
+			FROM 
+				quickpollanswer 
+			WHERE quickpoll_question_id in (
+											SELECT 
+												quickpoll_question_id 
+											FROM 
+												QuickPollQuestion 
+											WHERE course_id = #{course_id}
+											);
+			
+		]]>
+	</select>
+	<select id="selectCountForQuestion" resultType="Integer" parameterType="String">
+		<![CDATA[
+			SELECT 
+				count(quickpoll_question_id) 
+			FROM
+				QuickPollQuestion 
+			WHERE 
+				course_id=#{course_id} AND question_type != 1; 
+		]]>
+	</select>
+	<insert id="insertCourse" parameterType="hashmap">
+		<![CDATA[
+			INSERT 
+				INTO course(
+			    	course_id,
+			    	course_name,
+			    	periood,
+			    	day, 
+			    	credit,
+			    	professor_id
+			    )
+				VALUES(
+					#{course_id},
+		    		#{course_name},
+		    		#{period},
+		    		#{day},
+		    		#{credit},
+		    		#{professor_id}
+			    )
+			    
+		]]>
+	</insert>
+	<insert id="insertObjectiveQuestion" parameterType="hashmap">
+		<![CDATA[
+			INSERT 
+				INTO ObjectiveQuestion(
+			    	course_id,
+			    	question_content,
+			    	question_answer,
+			    	example1, 
+			    	example2,
+			    	example3,
+			    	example4
+			    )
+				VALUES(
+					#{course_id},
+		    		#{question_content},
+		    		#{question_answer},
+		    		#{example1},
+		    		#{example2},
+		    		#{example3},
+		    		#{example4}
+			    )
+			    
+		]]>
+	</insert>
+	<insert id="insertSubjectiveQuestion" parameterType="hashmap">
+		<![CDATA[
+			INSERT 
+				INTO SubjectiveQuestion(
+			    	course_id,
+			    	question_content,
+			    	question_answer,
+			    	question_similar_answer
+			    )
+				VALUES(
+					#{course_id},
+		    		#{question_content},
+		    		#{question_answer},
+		    		#{question_similar_answer}
+			    )
+			    
+		]]>
+	</insert>
+	
+	
+</mapper>
