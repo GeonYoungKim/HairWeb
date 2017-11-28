@@ -13,7 +13,9 @@ public class ClientService {
 	private ClientDao clientDao;
 
 	public String getItemPrice(int id) {
-		return clientDao.getItemPrice(id);
+		String convrt=clientDao.getItemPrice(id);
+		convrt=convrt.replaceAll("-", ",");
+		return convrt;/*clientDao.getItemPrice(id);*/
 	}
 
 }

@@ -23,5 +23,9 @@ public class ClientController {
 		System.out.println(item_price);
 		return "home";
 	}
-
+	
+	@RequestMapping(value = "/")
+	public String studentList8(HttpServletRequest request) throws Exception {
+		return "home";
+	}
 }
