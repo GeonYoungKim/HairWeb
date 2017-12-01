@@ -5,7 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import skuniv.ac.kr.dao.AdminDao;
-import skuniv.ac.kr.dao.ClientDao;
+import skuniv.ac.kr.dao.QnADao;
 
 @Service("AdminService")
 public class AdminService {
