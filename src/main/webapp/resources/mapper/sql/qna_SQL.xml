@@ -3,7 +3,6 @@
 
 <mapper namespace="qna">
 
-
 	<select id="selectQnAList" resultType="hashmap">
 			<![CDATA[
 				SELECT
