@@ -52,8 +52,7 @@ input[type=text] {
     background-color: white;
     color: white;
     padding: 14px 20px;
-    margin: 8px 0;
-    
+    margin: 8px 0;    
     border: 1px solid blue;
     border-radius: 4px;
     cursor: pointer;
@@ -69,7 +68,7 @@ button[type=submit]{
 </style>
 </head>
 
-<body class="masthead"
+<body 
 	style="background-image: url('resources/common/bootstrap/img/Main.jpg')">
 
 	<!-- Navigation -->
@@ -169,10 +168,8 @@ button[type=submit]{
 					</table>
 					<br>
 					
-					<table CELLPADDING="10" ALIGN="center">
-					
-		                <tr>
-		                
+					<table CELLPADDING="10" ALIGN="center">					
+		                <tr>		                
 		                <%
 		                	if(QnAunit==0){
 		                		%>
@@ -187,10 +184,18 @@ button[type=submit]{
 					
 					<br>
 		              <div class="form-group col-xs-12 floating-label-form-group controls">
-		                <table CELLPADDING="10" ALIGN="center">
-		                <tr>
-		                <td><input type="text" class="form-control" placeholder="검색" ></td><td><button type="submit" class="btn btn-primary" id="sendMessageButton">검색</button></td>
-		                </tr></table>
+		              <form action="/kr/QnA_search">
+			                <table CELLPADDING="10" ALIGN="center">
+				                <tr>
+				                	<td>
+				                		<select name="select" class="form-control">									    
+										    <option value="title" selected="selected">제목</option>
+										    <option value="content" >내용</option>
+										    <option value="writer">작성자</option>
+										</select></td><td><input type="text" class="form-control" placeholder="검색" name="search" ></td><td><button type="submit" class="btn btn-primary" id="sendMessageButton">검색</button></td>
+				                </tr>
+				            </table>
+			           </form>
 		              </div>
 				
 			</div>

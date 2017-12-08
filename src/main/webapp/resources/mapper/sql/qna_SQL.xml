@@ -48,6 +48,21 @@
 				WHERE a.designer_no=d.dnum and a.qna_no=#{qna_no};
 			]]>
 		</select>
+		<select id="select_search_title_QnAlist" parameterType="String" resultType="hashmap">
+			<![CDATA[
+				SELECT * FROM hairweb.qna WHERE QnA_title Like CONCAT('%', #{search}, '%')
+			]]>
+		</select>
+		<select id="select_search_content_QnAlist" parameterType="String" resultType="hashmap">
+			<![CDATA[
+				SELECT * FROM hairweb.qna WHERE QnA_body Like CONCAT('%', #{search}, '%')
+			]]>
+		</select>
+		<select id="select_search_writer_QnAlist" parameterType="String" resultType="hashmap">
+			<![CDATA[
+				SELECT * FROM hairweb.qna WHERE QnA_writer Like CONCAT('%', #{search}, '%')
+			]]>
+		</select>
 
 	<select id="selectStudentInfo" resultType="hashmap" parameterType="Integer">
 		<![CDATA[

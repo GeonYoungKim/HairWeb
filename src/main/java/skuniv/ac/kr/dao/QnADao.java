@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
+import model.QnAVO;
 import skuniv.ac.kr.connect.ConnectDB;
 
 @SuppressWarnings("unchecked")
@@ -31,5 +32,18 @@ public class QnADao extends ConnectDB{
 	public Map<String, Object> getAnswer(int qnA_no) {
 		// TODO Auto-generated method stub
 		return (Map<String,Object>)selectOne("qna.getAnswer",qnA_no);
+	}
+
+	public List<Map<String,Object>> select_search_title_QnAlist(String search) {
+		// TODO Auto-generated method stub
+		return (List<Map<String,Object>>)selectList("qna.select_search_title_QnAlist",search);
+	}
+	public List<Map<String,Object>> select_search_content_QnAlist(String search) {
+		// TODO Auto-generated method stub
+		return (List<Map<String,Object>>)selectList("qna.select_search_content_QnAlist",search);
+	}
+	public List<Map<String,Object>> select_search_writer_QnAlist(String search) {
+		// TODO Auto-generated method stub
+		return (List<Map<String,Object>>)selectList("qna.select_search_writer_QnAlist",search);
 	}
 }

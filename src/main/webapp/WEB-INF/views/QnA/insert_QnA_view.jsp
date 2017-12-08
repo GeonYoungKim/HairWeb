@@ -109,7 +109,6 @@ button[type=submit]{
                 <label>글쓴이</label>
                 <input type="text" name="QnA_writer"class="form-control" placeholder="글쓴이" id="name">
                 <p class="help-block text-danger"></p>
-                
               </div>
             </div>
             <div class="control-group">

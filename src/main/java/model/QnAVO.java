@@ -6,6 +6,17 @@ public class QnAVO {
 	private String QnA_preface;
 	private String QnA_writer;
 	private String QnA_body;
+	private int QnA_answer_flag;
+	
+	
+	
+	
+	public int getQnA_answer_flag() {
+		return QnA_answer_flag;
+	}
+	public void setQnA_answer_flag(int qnA_answer_flag) {
+		QnA_answer_flag = qnA_answer_flag;
+	}
 	public int getQnA_no() {
 		return QnA_no;
 	}

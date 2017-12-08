@@ -11,10 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import model.QnAVO;
 import skuniv.ac.kr.service.QnAService;
 
 @Controller
 public class QnAController {
+	List<Map<String,Object>> QnA_search_list;
 
 	@Resource(name = "QnAService")
 	private QnAService qnaService;
@@ -70,6 +72,40 @@ public class QnAController {
 		request.setAttribute("QnA_one", QnA_one);
 		request.setAttribute("Answer_one", Answer_one);
 		return "QnA/QnA_one_view";
+	}
+	@RequestMapping(value = "/QnA_search")
+	public String QnA_search(HttpServletRequest request) throws Exception {
+		int QnA_page_num = 0;
+		String select=request.getParameter("select");		
+		String search=request.getParameter("search");
+		try {
+			QnA_page_num=Integer.parseInt(request.getParameter("QnA_page_num"));			
+		
+		}catch (Exception e) {
+			// TODO: handle exception
+		}		
+		if(select!=null&&search!=null) {
+			QnA_search_list= qnaService.select_search_QnAlist(select,search);
+		}
+		
+		request.setAttribute("QnA_search_list", QnA_search_list);
+		request.setAttribute("QnA_page_num", QnA_page_num);
+		return "QnA/QnA_search";
+		
+	}
+	@RequestMapping(value = "/reservation")
+	public String reservation(HttpServletRequest request) throws Exception {
+		System.out.println("reservation");
+		return "reservation/reservation";
+	}
+	@RequestMapping(value = "/reservation_select_day")
+	public void reservation_select_day(HttpServletRequest request) throws Exception {
+		System.out.println("reservation_select_day");
+		String y=request.getParameter("y");
+		String m=request.getParameter("m");
+		String d=request.getParameter("d");
+		System.out.println(y+"-"+m+"-"+d);
+		
 	}
 
 }
