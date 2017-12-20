@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import skuniv.ac.kr.connect.ConnectDB;
 
 @SuppressWarnings("unchecked")
-@Repository("AdminDao")
-public class AdminDao extends ConnectDB{
+@Repository("AdminQnADao")
+public class AdminQnADao extends ConnectDB{
 
 }
