@@ -17,5 +17,4 @@ public class ClientService {
 		convrt=convrt.replaceAll("-", ",");
 		return convrt;/*clientDao.getItemPrice(id);*/
 	}
-
 }

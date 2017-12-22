@@ -37,13 +37,13 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="resources/common/bootstrap/index.html">Home</a>
+              <a class="nav-link" href="">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="resources/common/bootstrap/designer.html">Designer</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="resources/common/bootstrap/post.html">Sample Post</a>
+              <a class="nav-link" href="Review">Sample Post</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="resources/common/bootstrap/contact.html">Contact</a>
