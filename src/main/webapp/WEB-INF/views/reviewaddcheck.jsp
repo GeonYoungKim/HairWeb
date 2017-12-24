@@ -33,21 +33,19 @@
           <i class="fa fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="resources/common/bootstrap/designer.html">Designer</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="resources/common/bootstrap/post.html">Sample Post</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="resources/common/bootstrap/contact.html">Contact</a>
-            </li>
-          </ul>
-        </div>
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link"
+						href="/kr/reservation"><font size=5>Reservation</font></a>
+					</li>
+					<li class="nav-item"><a class="nav-link"
+						href="resources/common/bootstrap/designer.html"><font size=5>Designer</font></a>
+					</li>
+					<li class="nav-item"><a class="nav-link"
+						href="resources/common/bootstrap/post.html"><font size=5>Review</font></a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="/kr/QnA"><font size=5>Q&A</font></a></li>
+				</ul>
+			</div>
       </div>
     </nav>
 

@@ -632,28 +632,7 @@ demo = {
             select: function(start, end) {
             	
             	// on select we show the Sweet Alert modal with an input
-				swal({
-    				title: 'Create an Event',
-    				html: '<br><input class="form-control" placeholder="Event Title" id="input-field">',
-    				showCancelButton: true,
-    				closeOnConfirm: true
-                }, function() {
-
-                    var eventData;
-                    event_title = $('#input-field').val();
-
-                    if (event_title) {
-    					eventData = {
-    						title: event_title,
-    						start: start,
-    						end: end
-    					};
-    					location.replace("http://localhost:8080/kr/reservation_select_day?y="+end+"&m="+event_title+"&d="+start);
-    					$calendar.fullCalendar('renderEvent', eventData, true); // stick? = true
-    				}
-    				$calendar.fullCalendar('unselect');
-
-                });
+            	location.replace("http://localhost:8080/kr/reservation_select_day?date="+start.format('YYYY-MM-DD'));
 			},
 			
 			editable: true,

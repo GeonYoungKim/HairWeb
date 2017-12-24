@@ -1,4 +1,4 @@
-<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Iterator"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -66,7 +66,7 @@ body {
 	background-repeat: no-repeat;
 }
 .row{
-	width: 800px; 
+	width: 1400px; 
 	height: 800px;
 	
 }
@@ -83,11 +83,15 @@ body {
 	background-color: white;
 }
 
-
 </style></head>
 
-<body class="masthead"
+<body 
 	style="background-image: url('resources/common/bootstrap/img/Main.jpg')">
+	
+	<% Map<String,Map<String, String>> reservation_possible_map=(Map<String,Map<String, String>>)request.getAttribute("reservation_possible_map");
+	//Iterator<String> reservation_possible_map_keys=reservation_possible_map.keySet().iterator();
+	int size=0;
+	%>
 		<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top"
 		id="mainNav">
@@ -121,8 +125,57 @@ body {
 		<table  CELLPADDING="5" ALIGN="center" >
 			<TR id="tb">
 				<td><div id="fullCalendar"></div></td>
-				<td></td>
-				
+				<td>
+						<%-- <jsp:include page="reservation_select_day_include.jsp"></jsp:include> --%>
+						 
+	        
+	            
+	                <div class="row">
+	                    <div class="col-lg-6 col-md-12">
+	                        <div class="card">
+	                            
+	                            <div class="content">
+	    	                       <div id="acordeon">
+	    	                            <div class="panel-group" id="accordion">
+	    	                            
+	    	                            <ul>
+	    	                            	<%for(String str:reservation_possible_map.keySet()){	    	                            		
+	    	                            		
+	    	                            	%>
+		    	                            <li>
+		    	                                <div class="panel panel-border panel-default">
+			    	                                <a data-toggle="collapse" href="#collapse<%=size%>">
+			    	                                    <div class="panel-heading">
+			    	                                        <h4 class="panel-title">
+			    	                                        	<%=str %>
+			    	                                        	<i class="ti-angle-down"></i>
+			    	                                        </h4>
+			    	                                    </div>
+			    	                                </a>
+			    	                                <div id="collapse<%=size%>" class="panel-collapse collapse">
+			    	                                	<div class="panel-body">
+			    	                                    	<%for(String time:reservation_possible_map.get(str).keySet()){ 
+			    	                                    		if("가능".equals(reservation_possible_map.get(str).get(time))){%>
+			    	                                    			<font style="cursor:pointer;" size="3" color="green" onclick="location='/kr/test'"><%=time %>-<%=reservation_possible_map.get(str).get(time) %></font>&nbsp;
+					    	                                    <%}else{%>
+			    	                                    			<font size="3" color="red"><%=time %>-<%=reservation_possible_map.get(str).get(time) %></font>&nbsp;
+					    	                                    <%} %>
+			    	                                    	<%} %>
+			    	                                    </div>
+			    	                                </div>
+		    	                                </div>
+	    	                               </li>
+	    	                               <%size++;} %>
+	    	                                </ul>
+	    	                            </div>
+	    	                        </div><!--  end acordeon -->
+	                            </div>
+	                        </div>
+	                    </div>
+					</div>					
+	    				
+	    
+	    	         </td>
 			</TR>
 		</table>	          	
 	</div>
