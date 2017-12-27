@@ -3,12 +3,14 @@
 
 <mapper namespace="reservation">
 
-	<select id="select_reservation_List" resultType="hashmap">
+	<select id="select_reservation_List" resultType="hashmap" parameterType="String">
 			<![CDATA[
 				SELECT
 				    *
 				FROM
-				    hairweb.reservation				
+				    hairweb.reservation	
+				WHERE 
+					rdate Like CONCAT(#{select_date}, '%')			
 			]]>
 		</select>
 		

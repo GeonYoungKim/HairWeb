@@ -29,8 +29,7 @@ public class ReservationController {
 		System.out.println("reservation_select_day");
 		String select_date=request.getParameter("date");
 		
-		Map<String,Map<String, String>> reservation_possible_map = reservationService.select_reservation_possible_map();
-		
+		Map<String,Map<String, String>> reservation_possible_map = reservationService.select_reservation_possible_map(select_date);
 		
 		request.setAttribute("reservation_possible_map", reservation_possible_map);
 		request.setAttribute("select_date", select_date);

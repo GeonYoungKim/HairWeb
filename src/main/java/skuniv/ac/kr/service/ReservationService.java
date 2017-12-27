@@ -28,31 +28,30 @@ public class ReservationService {
 	public void init_reservation_map(Map<String,String> reservation_map ){
 		
 		for(int i=0;i<reservation_times.length;i++) {
-			
-			if(i%2==0) {
-				reservation_map.put(reservation_times[i], "가능");
-			}else {
-				reservation_map.put(reservation_times[i], "불가능");
-			}
+			reservation_map.put(reservation_times[i], "가능");			
 		}
 		
 	}
 
-	public Map<String,Map<String, String>> select_reservation_possible_map() {
-		Map<String,Map<String, String>> reservation_possible_map=new HashMap<String,Map<String, String>>();
+	public Map<String,Map<String, String>> select_reservation_possible_map(String select_date) {
+		Map<String,Map<String, String>> reservation_possible_map=new TreeMap<String,Map<String, String>>();
 		
-		Map<String,String> reservation_map=new TreeMap<>();
-		
-		init_reservation_map(reservation_map);
-		
-		
-		
+		Map<String,String> reservation_map=new TreeMap<>();		
 		
 		
 		List<Map<String, Object>> designer_list=designerDao.select_designer_List();
-		List<Map<String, Object>> reservation_list=reservationDao.select_reservation_list();
+		List<Map<String, Object>> reservation_list=reservationDao.select_reservation_list(select_date);
 		
+				
 		for(int i=0;i<designer_list.size();i++) {
+			init_reservation_map(reservation_map);
+			for(int j=0;j<reservation_list.size();j++) {
+				if(designer_list.get(i).get("dnum").equals(reservation_list.get(j).get("rdesignernum"))) {	
+					System.out.println(reservation_list.get(j).get("rdesignernum")+"-"+reservation_list.get(j).get("ritem"));
+					String[] today_reservation_time=((String)reservation_list.get(j).get("rdate")).split("/");
+				
+				}
+			}			
 			reservation_possible_map.put((String) designer_list.get(i).get("dname"), reservation_map);
 		}
 		
