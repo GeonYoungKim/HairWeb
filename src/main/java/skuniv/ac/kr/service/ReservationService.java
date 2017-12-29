@@ -21,7 +21,9 @@ public class ReservationService {
 	@Resource(name = "DesignerDao")
 	private DesignerDao designerDao;
 	
-	String[] reservation_times={"09:00","09:30","10:00","10:30","11:00","11:30","12:00","12:30","13:00","13:30"
+	private int swich=0;
+	
+	private String[] reservation_times={"09:00","09:30","10:00","10:30","11:00","11:30","12:00","12:30","13:00","13:30"
 			,"14:00","14:30","15:00","15:30","16:00","16:30","17:00","17:30","18:00","18:30","19:00","19:30"
 			,"20:00","20:30"};
 	
@@ -34,8 +36,7 @@ public class ReservationService {
 	}
 
 	public Map<String,Map<String, String>> select_reservation_possible_map(String select_date) {
-		Map<String,Map<String, String>> reservation_possible_map=new TreeMap<String,Map<String, String>>();
-		
+		Map<String,Map<String, String>> reservation_possible_map=new TreeMap<String,Map<String, String>>();		
 		Map<String,String> reservation_map=new TreeMap<>();		
 		
 		
@@ -44,14 +45,29 @@ public class ReservationService {
 		
 				
 		for(int i=0;i<designer_list.size();i++) {
+			reservation_map=new TreeMap<>();		 
 			init_reservation_map(reservation_map);
 			for(int j=0;j<reservation_list.size();j++) {
 				if(designer_list.get(i).get("dnum").equals(reservation_list.get(j).get("rdesignernum"))) {	
 					System.out.println(reservation_list.get(j).get("rdesignernum")+"-"+reservation_list.get(j).get("ritem"));
 					String[] today_reservation_time=((String)reservation_list.get(j).get("rdate")).split("/");
-				
+					String[] today_start_end_reservation_time=today_reservation_time[1].split("~");
+					for(String time:reservation_map.keySet()) {
+						if(time.equals(today_start_end_reservation_time[0])){
+							System.out.println(time);
+							swich=1;							
+						}
+						if(time.equals(today_start_end_reservation_time[1])){
+							System.out.println(time);
+							swich=0;							
+						}
+						if(swich==1) {
+							System.out.println(time);
+							reservation_map.put(time, "ºÒ°¡´É");
+						}
+					}
 				}
-			}			
+			}				
 			reservation_possible_map.put((String) designer_list.get(i).get("dname"), reservation_map);
 		}
 		

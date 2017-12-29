@@ -36,10 +36,10 @@ public class ReservationController {
 		return "reservation/reservation_select_day_show";
 		
 	}
-	@RequestMapping(value = "/test")
-	public void test(HttpServletRequest request) throws Exception {
+	@RequestMapping(value = "/tr")
+	public String test(HttpServletRequest request) throws Exception {
 		System.out.println("test");
-		
+		return "reservation/tr";
 		
 	}
 	

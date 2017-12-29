@@ -498,8 +498,8 @@ demo = {
                 });
     	} else if(type == 'input-field'){
             swal({
-                  title: 'Input something',
-                  html: '<p><input id="input-field" class="form-control">',
+                  title: '원하는 헤어를 고르세요',
+                  html: '<big><input type="checkbox" name="cut" id="cut">커트</big><big><input type="checkbox" name="dye" id="dye" >염색</big><big><input type="checkbox" name="pum" id="pum" >펌</big>',
                   showCancelButton: true,
                   closeOnConfirm: false,
                   allowOutsideClick: false
@@ -508,7 +508,7 @@ demo = {
                   swal({
                     html:
                       'You entered: <strong>' +
-                      $('#input-field').val() +
+                      $('#cut').prop('checked') +$('#dye').prop('checked') +$('#pum').prop('checked') +
                       '</strong>'
                   });
                 })
