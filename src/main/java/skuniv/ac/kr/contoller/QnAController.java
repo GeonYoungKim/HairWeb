@@ -4,14 +4,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+
+import javax.annotation.Resource;
+
 import model.QnAVO;
+
 import skuniv.ac.kr.service.QnAService;
 
 @Controller
@@ -93,19 +97,6 @@ public class QnAController {
 		return "QnA/QnA_search";
 		
 	}
-	@RequestMapping(value = "/reservation")
-	public String reservation(HttpServletRequest request) throws Exception {
-		System.out.println("reservation");
-		return "reservation/reservation";
-	}
-	@RequestMapping(value = "/reservation_select_day")
-	public void reservation_select_day(HttpServletRequest request) throws Exception {
-		System.out.println("reservation_select_day");
-		String y=request.getParameter("y");
-		String m=request.getParameter("m");
-		String d=request.getParameter("d");
-		System.out.println(y+"-"+m+"-"+d);
-		
-	}
+	
 
 }
