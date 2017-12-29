@@ -89,7 +89,7 @@ body {
 	style="background-image: url('resources/common/bootstrap/img/Main.jpg')">
 	
 	<% Map<String,Map<String, String>> reservation_possible_map=(Map<String,Map<String, String>>)request.getAttribute("reservation_possible_map");
-	//Iterator<String> reservation_possible_map_keys=reservation_possible_map.keySet().iterator();
+	String select_date=(String)request.getAttribute("select_date");
 	int size=0;
 	%>
 		<!-- Navigation -->
@@ -127,8 +127,6 @@ body {
 				<td><div id="fullCalendar"></div></td>
 				<td>
 						<%-- <jsp:include page="reservation_select_day_include.jsp"></jsp:include> --%>
-						 
-	        
 	            
 	                <div class="row">
 	                    <div class="col-lg-6 col-md-12">
@@ -137,10 +135,8 @@ body {
 	                            <div class="content">
 	    	                       <div id="acordeon">
 	    	                            <div class="panel-group" id="accordion">
-	    	                            
 	    	                            <ul>
-	    	                            	<%for(String str:reservation_possible_map.keySet()){	    	                            		
-	    	                            		
+	    	                            	<%for(String str:reservation_possible_map.keySet()){
 	    	                            	%>
 		    	                            <li>
 		    	                                <div class="panel panel-border panel-default">
@@ -156,7 +152,7 @@ body {
 			    	                                	<div class="panel-body">
 			    	                                    	<%for(String time:reservation_possible_map.get(str).keySet()){ 
 			    	                                    		if("가능".equals(reservation_possible_map.get(str).get(time))){%>
-			    	                                    			<font style="cursor:pointer;" size="3" color="green" onclick="location='/kr/test'"><%=time %>-<%=reservation_possible_map.get(str).get(time) %></font>&nbsp;
+			    	                                    			<font style="cursor:pointer;" size="3" color="green" onclick="demo.showSwal('input-field')"><%=time %>-<%=reservation_possible_map.get(str).get(time) %></font>&nbsp;
 					    	                                    <%}else{%>
 			    	                                    			<font size="3" color="red"><%=time %>-<%=reservation_possible_map.get(str).get(time) %></font>&nbsp;
 					    	                                    <%} %>
@@ -236,7 +232,7 @@ body {
 	<script src="resources/common/quickpoll_bootstrap/assets/js/paper-dashboard.js"></script>
 
 	<!-- Paper Dashboard PRO DEMO methods, don't include it in your project! -->
-	<script src="resources/common/quickpoll_bootstrap/assets/js/demo.js?ver1=2"></script>
+	<script src="resources/common/quickpoll_bootstrap/assets/js/demo.js?ver1=4"></script>
 <!-- Custom scripts for this template -->
 	<script src="resources/common/bootstrap/js/clean-blog.min.js"></script>
 <script

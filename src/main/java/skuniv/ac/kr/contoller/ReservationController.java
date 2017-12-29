@@ -37,10 +37,17 @@ public class ReservationController {
 		
 	}
 	@RequestMapping(value = "/tr")
-	public String test(HttpServletRequest request) throws Exception {
-		System.out.println("test");
+	public String tr(HttpServletRequest request) throws Exception {
+		System.out.println("tr");
 		return "reservation/tr";
 		
+	}
+	@RequestMapping(value = "/test")
+	public void test(HttpServletRequest request) throws Exception {
+		System.out.println("test");
+		System.out.println(request.getParameter("cut"));
+		System.out.println(request.getParameter("dye"));
+		System.out.println(request.getParameter("pum"));
 	}
 	
 	

@@ -32,9 +32,6 @@
 </head>
 
 <body>
-
-
-
 	                    <div class="places-sweet-alerts">
 	                        <div class="row">
 	                            
@@ -48,7 +45,6 @@
 	                            </div>
 	                        </div>
 	                    </div>
-	            
 </body>
 
 	<!--   Core JS Files. Extra: PerfectScrollbar + TouchPunch libraries inside jquery-ui.min.js   -->
