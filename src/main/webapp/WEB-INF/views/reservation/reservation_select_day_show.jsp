@@ -83,15 +83,73 @@ body {
 	background-color: white;
 }
 
-</style></head>
+</style>
+    
+</head>
 
 <body 
 	style="background-image: url('resources/common/bootstrap/img/Main.jpg')">
 	
 	<% Map<String,Map<String, String>> reservation_possible_map=(Map<String,Map<String, String>>)request.getAttribute("reservation_possible_map");
 	String select_date=(String)request.getAttribute("select_date");
+	System.out.println(select_date);
 	int size=0;
+	
 	%>
+	
+	<script type="text/javascript">
+		
+		var map=new Map();
+		
+		<%for(String key:reservation_possible_map.keySet()){%>
+			var k='<%=key%>';
+			var serve_map=new Map();
+			<%for(String key2:reservation_possible_map.get(key).keySet()){%>
+				var k2='<%=key2%>';
+				var value='<%=reservation_possible_map.get(key).get(key2)%>';
+				serve_map.set(k2,value);
+			<%}%>
+			
+			map.set(k,serve_map);
+		<%}%> 
+		
+ 		var date='<%=select_date%>';
+    	demo2={
+    			showSwal: function(type,time){
+    		        if(type == 'input-field'){
+    		    		var st=time;
+    		    		var et=time;
+    		            swal({
+    		                  title: '원하는 헤어를 고르세요',
+    		                  html: '<input type="checkbox" name="cut" id="cut" style="width:30px;height:30px;"><font size="5">커트</font><input type="checkbox" name="dye" id="dye" style="width:30px;height:30px;"><font size="5">염색</font><input type="checkbox" name="pum" id="pum" style="width:30px;height:30px;"><font size="5">펌</font>',
+    		                  showCancelButton: true,
+    		                  closeOnConfirm: false,
+    		                  allowOutsideClick: false
+    		                },
+    		                function() {    		                	
+    		                	if($('#cut').prop('checked')==true){
+    		                		var str_plus_one=et.substring(0,2);
+    		                		var int_plus_one=parseInt(str_plus_one)+1;
+    		                		et=et.replace(str_plus_one,int_plus_one);
+    		                	}
+    		                	if($('#dye').prop('checked')==true){
+    		                		var str_plus_one=et.substring(0,2);
+    		                		var int_plus_one=parseInt(str_plus_one)+2;
+    		                		et=et.replace(str_plus_one,int_plus_one);
+    		                		
+    		                	}
+    		                	if($('#pum').prop('checked')==true){
+    		                		var str_plus_one=et.substring(0,2);
+    		                		var int_plus_one=parseInt(str_plus_one)+2;
+    		                		et=et.replace(str_plus_one,int_plus_one);
+    		                		
+    		                	}
+    		                	
+    		                })//location.replace("http://localhost:8080/kr/test?cut="+$('#cut').prop('checked')+"&dye="+$('#dye').prop('checked')+"&pum="+$('#pum').prop('checked')+"&date="+date+"&time="+t);
+    		        }
+    			},
+    	}
+    </script>
 		<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top"
 		id="mainNav">
@@ -152,7 +210,7 @@ body {
 			    	                                	<div class="panel-body">
 			    	                                    	<%for(String time:reservation_possible_map.get(str).keySet()){ 
 			    	                                    		if("가능".equals(reservation_possible_map.get(str).get(time))){%>
-			    	                                    			<font style="cursor:pointer;" size="3" color="green" onclick="demo.showSwal('input-field')"><%=time %>-<%=reservation_possible_map.get(str).get(time) %></font>&nbsp;
+			    	                                    			<font style="cursor:pointer;" size="3" color="green" onclick="demo2.showSwal('input-field','<%=time%>')"><%=time %>-<%=reservation_possible_map.get(str).get(time) %></font>&nbsp;
 					    	                                    <%}else{%>
 			    	                                    			<font size="3" color="red"><%=time %>-<%=reservation_possible_map.get(str).get(time) %></font>&nbsp;
 					    	                                    <%} %>

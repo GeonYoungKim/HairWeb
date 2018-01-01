@@ -29,6 +29,8 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <link href="resources/common/quickpoll_bootstrap/assets/css/themify-icons.css" rel="stylesheet">
+    
+
 </head>
 
 <body>
@@ -39,7 +41,7 @@
 	                                <div class="card">
 	                                    <div class="content text-center">
 	                                        <h5>Modal window with input field</h5>
-	                                        <button class="btn btn-default btn-fill" onclick="demo.showSwal('input-field')">Try me!</button>
+	                                        <button class="btn btn-default btn-fill" onclick="demo2.showSwal('input-field')">Try me!</button>
 	                                    </div>
 	                                </div>
 	                            </div>

@@ -49,20 +49,17 @@ public class ReservationService {
 			init_reservation_map(reservation_map);
 			for(int j=0;j<reservation_list.size();j++) {
 				if(designer_list.get(i).get("dnum").equals(reservation_list.get(j).get("rdesignernum"))) {	
-					System.out.println(reservation_list.get(j).get("rdesignernum")+"-"+reservation_list.get(j).get("ritem"));
 					String[] today_reservation_time=((String)reservation_list.get(j).get("rdate")).split("/");
 					String[] today_start_end_reservation_time=today_reservation_time[1].split("~");
 					for(String time:reservation_map.keySet()) {
 						if(time.equals(today_start_end_reservation_time[0])){
-							System.out.println(time);
 							swich=1;							
 						}
 						if(time.equals(today_start_end_reservation_time[1])){
-							System.out.println(time);
+							
 							swich=0;							
 						}
 						if(swich==1) {
-							System.out.println(time);
 							reservation_map.put(time, "ºÒ°¡´É");
 						}
 					}
