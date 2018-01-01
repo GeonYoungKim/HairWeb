@@ -1,10 +1,7 @@
 type = ['','info','success','warning','danger'];
-
-
 demo = {
 
     initCirclePercentage: function(){
-
             $('#chartDashboard, #chartOrders, #chartNewVisitors, #chartSubscriptions').easyPieChart({
         		lineWidth: 6,
         		size: 160,
@@ -14,10 +11,7 @@ demo = {
         		animate: ({duration: 5000, enabled: true})
 
             });
-
-
     },
-
     initGoogleMaps: function(){
 
     // Satellite Map
