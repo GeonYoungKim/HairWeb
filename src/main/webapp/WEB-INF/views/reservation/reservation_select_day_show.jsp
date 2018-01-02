@@ -94,7 +94,6 @@ body {
 	String select_date=(String)request.getAttribute("select_date");
 	System.out.println(select_date);
 	int size=0;
-	
 	%>
 	
 	<script type="text/javascript">
@@ -113,15 +112,19 @@ body {
 			map.set(k,serve_map);
 		<%}%> 
 		
+		var a=0;
+		
+		
  		var date='<%=select_date%>';
     	demo2={
-    			showSwal: function(type,time){
+    			showSwal: function(type,time,designer){
     		        if(type == 'input-field'){
     		    		var st=time;
     		    		var et=time;
+    		    		var d=designer;
     		            swal({
     		                  title: '원하는 헤어를 고르세요',
-    		                  html: '<input type="checkbox" name="cut" id="cut" style="width:30px;height:30px;"><font size="5">커트</font><input type="checkbox" name="dye" id="dye" style="width:30px;height:30px;"><font size="5">염색</font><input type="checkbox" name="pum" id="pum" style="width:30px;height:30px;"><font size="5">펌</font>',
+    		                  html: '<input type="checkbox" name="cut" id="cut" style="width:30px;height:30px;"><font size="5">커트-1h</font><input type="checkbox" name="dye" id="dye" style="width:30px;height:30px;"><font size="5">염색-2h</font><input type="checkbox" name="pum" id="pum" style="width:30px;height:30px;"><font size="5">펌-2h</font>',
     		                  showCancelButton: true,
     		                  closeOnConfirm: false,
     		                  allowOutsideClick: false
@@ -136,17 +139,45 @@ body {
     		                		var str_plus_one=et.substring(0,2);
     		                		var int_plus_one=parseInt(str_plus_one)+2;
     		                		et=et.replace(str_plus_one,int_plus_one);
-    		                		
     		                	}
     		                	if($('#pum').prop('checked')==true){
     		                		var str_plus_one=et.substring(0,2);
     		                		var int_plus_one=parseInt(str_plus_one)+2;
     		                		et=et.replace(str_plus_one,int_plus_one);
-    		                		
     		                	}
+    		                	
+    		                	(map.get(d)).forEach(function (item, key, mapObj) {
+    		                		if(key==st){
+    		                	    	a=1;
+    		                	    }
+    		                		if(a==1){
+    		                	    	if(item=="불가능"){
+    		                	    		demo2.showNotification('top','center');
+    		                	    		a=0;
+    		                	    	}
+    		                	    } 
+    		                		if(key==et){
+    		                	    	a=0;
+    		                	    }    		                		   		                	    
+    		                	});
     		                	
     		                })//location.replace("http://localhost:8080/kr/test?cut="+$('#cut').prop('checked')+"&dye="+$('#dye').prop('checked')+"&pum="+$('#pum').prop('checked')+"&date="+date+"&time="+t);
     		        }
+    			},
+    			showNotification: function(from, align){
+    		    	color = 4;
+    		    	$.notify({
+    		        	
+    		        	message: "예약이 불가합니다."
+
+    		        },{
+    		            type: type[color],
+    		            timer: 10,
+    		            placement: {
+    		                from: from,
+    		                align: align
+    		            }
+    		        });
     			},
     	}
     </script>
@@ -210,7 +241,7 @@ body {
 			    	                                	<div class="panel-body">
 			    	                                    	<%for(String time:reservation_possible_map.get(str).keySet()){ 
 			    	                                    		if("가능".equals(reservation_possible_map.get(str).get(time))){%>
-			    	                                    			<font style="cursor:pointer;" size="3" color="green" onclick="demo2.showSwal('input-field','<%=time%>')"><%=time %>-<%=reservation_possible_map.get(str).get(time) %></font>&nbsp;
+			    	                                    			<font style="cursor:pointer;" size="3" color="green" onclick="demo2.showSwal('input-field','<%=time%>','<%=str%>')"><%=time %>-<%=reservation_possible_map.get(str).get(time) %></font>&nbsp;
 					    	                                    <%}else{%>
 			    	                                    			<font size="3" color="red"><%=time %>-<%=reservation_possible_map.get(str).get(time) %></font>&nbsp;
 					    	                                    <%} %>

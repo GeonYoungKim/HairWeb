@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,39 +13,47 @@
     <meta name="viewport" content="width=device-width" />
 
 
-     <!-- Bootstrap core CSS     -->
+    <!-- Bootstrap core CSS     -->
     <link href="resources/common/quickpoll_bootstrap/assets/css/bootstrap.min.css" rel="stylesheet" />
 
     <!--  Paper Dashboard core CSS    -->
     <link href="resources/common/quickpoll_bootstrap/assets/css/paper-dashboard.css" rel="stylesheet"/>
 
-
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="resources/common/quickpoll_bootstrap/assets/css/demo.css" rel="stylesheet" />
 
-
-    <!--  Fonts and icons     -->
+    <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <link href="resources/common/quickpoll_bootstrap/assets/css/themify-icons.css" rel="stylesheet">
-    
-
 </head>
 
 <body>
-	                    <div class="places-sweet-alerts">
-	                        <div class="row">
+
+	    <div class="main-panel">
+	        <div class="content">
+	            <div class="container-fluid">
+	                <div class="card">
+	                    
+	                    <div class="content">
+
+	                        <div class="places-buttons">
 	                            
-								<div class="col-md-3">
-	                                <div class="card">
-	                                    <div class="content text-center">
-	                                        <h5>Modal window with input field</h5>
-	                                        <button class="btn btn-default btn-fill" onclick="demo2.showSwal('input-field')">Try me!</button>
-	                                    </div>
+	                            <div class="row">
+	                                
+	                                <div class="col-md-3">
+	                                    <button class="btn btn-default btn-block" onclick="demo.showNotification('top','center')">Top Center</button>
 	                                </div>
+	                                
 	                            </div>
 	                        </div>
 	                    </div>
+	                </div>
+	            </div>
+	        </div>
+
+	    </div>
+	
 </body>
 
 	<!--   Core JS Files. Extra: PerfectScrollbar + TouchPunch libraries inside jquery-ui.min.js   -->
@@ -103,6 +110,6 @@
 	<script src="resources/common/quickpoll_bootstrap/assets/js/paper-dashboard.js"></script>
 
 	<!-- Paper Dashboard PRO DEMO methods, don't include it in your project! -->
-	<script src="resources/common/quickpoll_bootstrap/assets/js/demo.js?ver1=3"></script>
+	<script src="resources/common/quickpoll_bootstrap/assets/js/demo.js"></script>
 
 </html>
