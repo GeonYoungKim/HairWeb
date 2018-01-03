@@ -1,5 +1,6 @@
 package skuniv.ac.kr.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import model.Designer;
+import model.Reservation;
 import skuniv.ac.kr.dao.DesignerDao;
 import skuniv.ac.kr.dao.QnADao;
 import skuniv.ac.kr.dao.ReservationDao;
@@ -69,6 +72,28 @@ public class ReservationService {
 		}
 		
 		return reservation_possible_map;
+	}
+
+	public Reservation set_before_input_customer(String cut, String dye, String pum, String date, String st,String et,String designer) {
+		Reservation reservation=new Reservation();
+		ArrayList<String> choice_hair_list=new ArrayList<String>();
+		String date_time=date+"/"+st+"~"+et;
+		Map<String,Object> designer_map=designerDao.getDesigner_by_name(designer);
+		
+		reservation.setRdesignernum((int)designer_map.get("dnum"));
+		reservation.setRdate(date_time);
+		
+		if(cut.equals("true")) {
+			choice_hair_list.add("cut");
+		}
+		if(dye.equals("true")) {
+			choice_hair_list.add("dye");
+		}
+		if(pum.equals("true")) {
+			choice_hair_list.add("pum");
+		}
+		reservation.setRitem(choice_hair_list);
+		return reservation;
 	}
 
 }

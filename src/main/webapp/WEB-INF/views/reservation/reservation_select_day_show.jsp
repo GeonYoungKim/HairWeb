@@ -108,12 +108,10 @@ body {
 				var value='<%=reservation_possible_map.get(key).get(key2)%>';
 				serve_map.set(k2,value);
 			<%}%>
-			
 			map.set(k,serve_map);
 		<%}%> 
 		
 		var a=0;
-		
 		
  		var date='<%=select_date%>';
     	demo2={
@@ -121,30 +119,67 @@ body {
     		        if(type == 'input-field'){
     		    		var st=time;
     		    		var et=time;
+    		    		var confirm_time=time;
     		    		var d=designer;
+    		    		var confirm=0;
     		            swal({
     		                  title: '원하는 헤어를 고르세요',
     		                  html: '<input type="checkbox" name="cut" id="cut" style="width:30px;height:30px;"><font size="5">커트-1h</font><input type="checkbox" name="dye" id="dye" style="width:30px;height:30px;"><font size="5">염색-2h</font><input type="checkbox" name="pum" id="pum" style="width:30px;height:30px;"><font size="5">펌-2h</font>',
     		                  showCancelButton: true,
-    		                  closeOnConfirm: false,
+    		                  closeOnConfirm: true,
     		                  allowOutsideClick: false
     		                },
-    		                function() {    		                	
+    		                function() {    	
+    		                	
     		                	if($('#cut').prop('checked')==true){
     		                		var str_plus_one=et.substring(0,2);
     		                		var int_plus_one=parseInt(str_plus_one)+1;
     		                		et=et.replace(str_plus_one,int_plus_one);
+    		                		
+    		                		var str_confirm_two=et.substring(3,5);
+    		                		
+    		                		if(str_confirm_two=="30"){
+    		                			str_confirm_two="00";
+    		                		}else{
+    		                			var str_confirm_one=et.substring(0,2);
+    		                			var int_confirm_one=parseInt(str_confirm_one)-1;
+    		                			str_confirm_two="30";
+    		                		}
+    		                		confirm_time=int_confirm_one+":"+str_confirm_two;
+    		                		
     		                	}
     		                	if($('#dye').prop('checked')==true){
     		                		var str_plus_one=et.substring(0,2);
     		                		var int_plus_one=parseInt(str_plus_one)+2;
     		                		et=et.replace(str_plus_one,int_plus_one);
+    		                		
+									var str_confirm_two=et.substring(3,5);
+    		                		
+    		                		if(str_confirm_two=="30"){
+    		                			str_confirm_two="00";
+    		                		}else{
+    		                			var str_confirm_one=et.substring(0,2);
+    		                			var int_confirm_one=parseInt(str_confirm_one)-1;
+    		                			str_confirm_two="30";
+    		                		}
+    		                		confirm_time=int_confirm_one+":"+str_confirm_two;
     		                	}
     		                	if($('#pum').prop('checked')==true){
     		                		var str_plus_one=et.substring(0,2);
     		                		var int_plus_one=parseInt(str_plus_one)+2;
     		                		et=et.replace(str_plus_one,int_plus_one);
-    		                	}
+    		                		
+									var str_confirm_two=et.substring(3,5);
+    		                		
+    		                		if(str_confirm_two=="30"){
+    		                			str_confirm_two="00";
+    		                		}else{
+    		                			var str_confirm_one=et.substring(0,2);
+    		                			var int_confirm_one=parseInt(str_confirm_one)-1;
+    		                			str_confirm_two="30";
+    		                		}
+    		                		confirm_time=int_confirm_one+":"+str_confirm_two;
+    		                	}	
     		                	
     		                	(map.get(d)).forEach(function (item, key, mapObj) {
     		                		if(key==st){
@@ -152,24 +187,30 @@ body {
     		                	    }
     		                		if(a==1){
     		                	    	if(item=="불가능"){
-    		                	    		demo2.showNotification('top','center');
+    		                	    		confirm=1;
     		                	    		a=0;
     		                	    	}
     		                	    } 
-    		                		if(key==et){
+    		                		if(key==confirm_time){
     		                	    	a=0;
-    		                	    }    		                		   		                	    
+    		                	    } 
+    		                		if(key=="20:30"){
+    		                			if(confirm==1){
+    		                				confirm=0;
+    		                				demo2.showNotification('top','center');  
+    		                				window.close();
+    		                			}else{
+    		                				location.replace("http://localhost:8080/kr/reservation_input_customer?cut="+$('#cut').prop('checked')+"&dye="+$('#dye').prop('checked')+"&pum="+$('#pum').prop('checked')+"&date="+date+"&st="+st+"&designer="+d+"&et="+et);
+    		                			}
+    		                		}
     		                	});
-    		                	
-    		                })//location.replace("http://localhost:8080/kr/test?cut="+$('#cut').prop('checked')+"&dye="+$('#dye').prop('checked')+"&pum="+$('#pum').prop('checked')+"&date="+date+"&time="+t);
+    		                })
     		        }
     			},
     			showNotification: function(from, align){
     		    	color = 4;
     		    	$.notify({
-    		        	
     		        	message: "예약이 불가합니다."
-
     		        },{
     		            type: type[color],
     		            timer: 10,

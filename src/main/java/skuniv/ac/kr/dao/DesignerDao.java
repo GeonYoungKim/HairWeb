@@ -18,4 +18,9 @@ public class DesignerDao extends ConnectDB{
 		// TODO Auto-generated method stub
 		return (List<Map<String, Object>>)selectList("designer.select_designer_List");
 	}
+
+	public Map<String,Object> getDesigner_by_name(String designer) {
+		// TODO Auto-generated method stub
+		return (Map<String,Object>)selectOne("designer.getdesigner_by_name", designer);
+	}
 }

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import model.Reservation;
 import skuniv.ac.kr.service.QnAService;
 import skuniv.ac.kr.service.ReservationService;
 
@@ -36,18 +37,24 @@ public class ReservationController {
 		return "reservation/reservation_select_day_show";
 		
 	}
-	@RequestMapping(value = "/test2")
-	public String tr(HttpServletRequest request) throws Exception {
-		System.out.println("test2");
-		return "reservation/test";
+	@RequestMapping(value = "/reservation_input_customer")
+	public String test(HttpServletRequest request) throws Exception {
+		System.out.println("reservation_input_customer");
 		
-	}
-	@RequestMapping(value = "/test")
-	public void test(HttpServletRequest request) throws Exception {
-		System.out.println("test");
-		System.out.println(request.getParameter("cut"));
-		System.out.println(request.getParameter("dye"));
-		System.out.println(request.getParameter("pum"));
+		
+		String cut=request.getParameter("cut");
+		String dye=request.getParameter("dye");
+		String pum=request.getParameter("pum");
+		String date=request.getParameter("date");
+		String st=request.getParameter("st");
+		String et=request.getParameter("et");
+		String designer=request.getParameter("designer");
+		
+		
+		Reservation reservation=reservationService.set_before_input_customer(cut,dye,pum,date,st,et,designer);
+		
+		request.setAttribute("Reservation", reservation);
+		return "reservation/reservation_input_customer";
 	}
 	
 	

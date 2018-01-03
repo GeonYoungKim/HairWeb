@@ -1,13 +1,14 @@
 package model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Reservation {
 	private int rnum;
 	private int rdesignernum;
-	private Date rdate;
+	private String rdate;
 	private String rcustomerphone;
-	private String ritem;
+	private ArrayList<String> ritem;
 	public int getRnum() {
 		return rnum;
 	}
@@ -20,10 +21,10 @@ public class Reservation {
 	public void setRdesignernum(int rdesignernum) {
 		this.rdesignernum = rdesignernum;
 	}
-	public Date getRdate() {
+	public String getRdate() {
 		return rdate;
 	}
-	public void setRdate(Date rdate) {
+	public void setRdate(String rdate) {
 		this.rdate = rdate;
 	}
 	public String getRcustomerphone() {
@@ -32,10 +33,10 @@ public class Reservation {
 	public void setRcustomerphone(String rcustomerphone) {
 		this.rcustomerphone = rcustomerphone;
 	}
-	public String getRitem() {
+	public ArrayList<String> getRitem() {
 		return ritem;
 	}
-	public void setRitem(String ritem) {
+	public void setRitem(ArrayList<String> ritem) {
 		this.ritem = ritem;
 	}
 	

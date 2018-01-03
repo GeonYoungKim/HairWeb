@@ -13,6 +13,16 @@
 		</select>
 		
 		
+	<select id="getdesigner_by_name" parameterType="String" resultType="hashmap">
+			<![CDATA[
+				SELECT
+				    *
+				FROM
+				    hairweb.designer		
+				WHERE
+					designer.dname=#{dname};	
+			]]>
+		</select>
 		
 
 </mapper>
