@@ -1,5 +1,9 @@
 package skuniv.ac.kr.contoller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,11 +21,15 @@ public class DesignerController {
 	
 	@RequestMapping(value = "/Designer")
 	public String studentList8(HttpServletRequest request) throws Exception {
-		return "designer";
+		
+		List<Map<String, Object>> designer_list = designerService.selectdesignerList();
+		request.setAttribute("designer_list", designer_list);	
+		
+		return "designer/designer";
 	}
 	
 	@RequestMapping(value = "/Designerprofile")
 	public String studentList78(HttpServletRequest request) throws Exception {
-		return "designerprofile";
+		return "designer/designerprofile";
 	}
 }

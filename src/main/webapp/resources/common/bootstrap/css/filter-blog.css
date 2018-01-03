@@ -240,9 +240,13 @@ header.masthead {
 }
 .table-filter {
 	background-color: #fff;
+	text-align:center;
 	border-bottom: 1px solid #eee;
+	vertical-align: middle;
+	margin-left: auto;
+	margie-right: auto;
 }
-.table-filter tbody tr:hover {
+.table-filter tbody tr td:hover {
 	cursor: pointer;
 	background-color: #eee;
 }
@@ -253,12 +257,6 @@ header.masthead {
 }
 .table-filter tbody tr.selected td {
 	background-color: #eee;
-}
-.table-filter tr td:first-child {
-	width: 38px;
-}
-.table-filter tr td:nth-child(2) {
-	width: 35px;
 }
 .ckbox {
 	position: relative;
