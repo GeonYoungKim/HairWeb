@@ -41,7 +41,6 @@ public class ReservationController {
 	public String test(HttpServletRequest request) throws Exception {
 		System.out.println("reservation_input_customer");
 		
-		
 		String cut=request.getParameter("cut");
 		String dye=request.getParameter("dye");
 		String pum=request.getParameter("pum");
@@ -50,12 +49,21 @@ public class ReservationController {
 		String et=request.getParameter("et");
 		String designer=request.getParameter("designer");
 		
-		
 		Reservation reservation=reservationService.set_before_input_customer(cut,dye,pum,date,st,et,designer);
 		
 		request.setAttribute("Reservation", reservation);
 		return "reservation/reservation_input_customer";
 	}
+	@RequestMapping(value = "/reservation_complete")
+	public String reservation_complete(HttpServletRequest request) throws Exception {
+		
+		
+		
+		return "reservation/reservation_complete";
+	}
+	
+	
+	
 	
 	
 
