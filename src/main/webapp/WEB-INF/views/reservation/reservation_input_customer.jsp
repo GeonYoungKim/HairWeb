@@ -1,3 +1,5 @@
+<%@page import="com.google.gson.Gson"%>
+<%@page import="java.util.Random"%>
 <%@page import="model.Reservation"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
@@ -63,7 +65,7 @@
 		<style type="text/css">
 		.col-md-6 {
 		    position: relative;
-		    top: 200px;
+		    top: 150px;
 		    left: 350px;
 		    
 		}
@@ -96,33 +98,97 @@
 		}
 		.com{
 			position: absolute;
-			left: 150px;
+			
 			font-size: 200%;
 		}
 		.kaka{
 			position: absolute;
-			left: 300px;
+			left: 150px;
 			font-size: 200%;
 			background-color: #FFFF00;
 			color:#61380B;
 		}
 		.naver{
 			position: absolute;
-			left: 450px;
+			left: 300px;
 			font-size: 200%;
 			background-color: #00FF00;
 		}
 		.form-control{
 			
 			font-size:200% ;
+			
 		}
+		
 		</style>
+		 <script type="text/javascript">
+            function setPhoneNumber(val) {
+                var numList = val.split("-");
+                document.smsForm.sphone1.value = numList[0];
+                document.smsForm.sphone2.value = numList[1];
+            if(numList[2] != undefined){
+                    document.smsForm.sphone3.value = numList[2];
+        }
+            }
+
+            function loadJSON() {
+                var data_file = "/calljson.jsp";
+                var http_request = new XMLHttpRequest();
+                try {
+                    // Opera 8.0+, Firefox, Chrome, Safari
+                    http_request = new XMLHttpRequest();
+                } catch (e) {
+                    // Internet Explorer Browsers
+                    try {
+                        http_request = new ActiveXObject("Msxml2.XMLHTTP");
+
+                    } catch (e) {
+
+                        try {
+                            http_request = new ActiveXObject("Microsoft.XMLHTTP");
+                        } catch (e) {
+                            // Eror
+                            alert("지원하지 않는브라우저!");
+                            return false;
+                        }
+
+                    }
+                }
+                http_request.onreadystatechange = function() {
+                    if (http_request.readyState == 4) {
+                        // Javascript function JSON.parse to parse JSON data
+                        var jsonObj = JSON.parse(http_request.responseText);
+                        if (jsonObj['result'] == "Success") {
+                            var aList = jsonObj['list'];
+                            var selectHtml = "<select name=\"sendPhone\" onchange=\"setPhoneNumber(this.value)\">";
+                            selectHtml += "<option value='' selected>발신번호를 선택해주세요</option>";
+                            for (var i = 0; i < aList.length; i++) {
+                                selectHtml += "<option value=\"" + aList[i] + "\">";
+                                selectHtml += aList[i];
+                                selectHtml += "</option>";
+                            }
+                            selectHtml += "</select>";
+                            document.getElementById("sendPhoneList").innerHTML = selectHtml;
+                        }
+                    }
+                }
+
+                http_request.open("GET", data_file, true);
+                http_request.send();
+            }
+        </script>
 </head>
 	<%
 			Reservation reservation=(Reservation)request.getAttribute("Reservation");
+			Gson gson=new Gson();
+			String json_reservation=gson.toJson(reservation);
+			System.out.println(json_reservation);
+			Random random=new Random();
+			String certification_number="인증번호  ["+(random.nextInt(9000)+1000)+"]";
+			
 	%>
 <body class="masthead"
-	style="background-image: url('resources/common/bootstrap/img/Main.jpg')">
+	style="background-image: url('resources/common/bootstrap/img/Main.jpg')" onload="loadJSON()">
 		<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top"
 		id="mainNav">
@@ -153,7 +219,7 @@
 	
 	                    <div class="col-md-6">
 	                        <div class="card">
-	                            <form id="loginFormValidation" action="reservation_complete" method="" novalidate="">
+	                            <div id="loginFormValidation">
 	                                <div class="header text-center my_margin">
 										<h4 class="title gun">
 											고객 정보 입력
@@ -161,31 +227,44 @@
 									</div>
 	                                <div class="content">
 	                                    <div class="form-group my_marqgin">
-	                                        <label class="control-label gun">고객 이름 <star>*</star></label>
-	                                        <input class="form-control"
-	                                               name="name"
-	                                               type="text"
-	                                               required="true"
-	                                               
-											/>
+	                                        <label class="gun">고객 이름 <star>*</star></label><br/>
+		                                        <input  class="form-control"
+		                                               name="name"
+		                                               type="text"
+		                                               required="true"
+		                                               size="100"
+												/>
 	                                    </div>
 	                                    <div class="form-group my_margin">
-	                                        <label class="control-label gun">고객 번호 <star>*</star></label>
-	                                        <input class="form-control"
-	                                               name="phone"
-	                                               id="registerPassword"
-	                                               type="text"
-	                                               required="true"
-	                                              
-											/>
-											<br>
-											<button class="btn btn-info btn-fill btn-wd gun2">인증요청</button>
+		                                    <form method="post" name="smsForm22" action="sms">
+		                                    	
+		                                        <label class="gun">고객 번호 <star>*</star></label><br/>
+			                                        <input name="rphone"
+			                                               type="text"
+			                                                class="form-control"
+			                                               required="true"
+			                                               placeholder="010-0000-0000 '-'를 다 입력해주세요"
+			                                               size="100" 
+			                                               height="80px"
+													/>												
+												<input type="hidden" name="action" value="go">
+												<input type="submit" class="gun2" value="인증요청">
+												<input type="hidden" name="msg" value="<%=certification_number%>">
+												<input type="hidden" name="json_reservation" value="<%=json_reservation%>">
+												<input type="hidden" name="smsType" value="S">
+												<input type="hidden" name="sphone1" value="010">
+												<input type="hidden" name="sphone2" value="4101">
+												<input type="hidden" name="sphone3" value="9304">
+											</form>
 	                                    </div>
-	                                </div>										
-										<button  class="btn btn-info btn-fill btn-wd com" >예약하기</button>
-										<button  class="btn btn-info btn-wd kaka">kakao</button>
-										<button  class="btn btn-info btn-wd naver" >naver</button>									
-	                            </form>
+	                                
+		                                <div class="form-group my_margin">								
+											<button  class="btn btn-info btn-fill btn-wd com" >예약하기</button>
+											<button  class="btn btn-info btn-wd kaka">kakao</button>
+											<button  class="btn btn-info btn-wd naver" >naver</button>	
+										</div>	
+										</div>									
+	                            </div>
 	                        </div>
 	                    </div>
 		

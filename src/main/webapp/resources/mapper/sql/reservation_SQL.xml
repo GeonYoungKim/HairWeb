@@ -13,7 +13,23 @@
 					rdate Like CONCAT(#{select_date}, '%')			
 			]]>
 		</select>
-		
+		<insert id="insert_before_cusphone_reservation" parameterType="model.Reservation">
+			<![CDATA[
+				INSERT 
+					INTO
+					 hairweb.reservation
+					  (rnum,
+					  rdesignernum,
+					  rdate,
+					  ritem)
+					 VALUES (
+					 #{rnum},
+					 #{rdesignernum},
+					 #{rdate},
+					 #{ritem}		 	 
+					 );			
+			]]>
+		</insert>
 		
 		
 

@@ -8,7 +8,7 @@ public class Reservation {
 	private int rdesignernum;
 	private String rdate;
 	private String rcustomerphone;
-	private ArrayList<String> ritem;
+	private String ritem;
 	public int getRnum() {
 		return rnum;
 	}
@@ -33,10 +33,10 @@ public class Reservation {
 	public void setRcustomerphone(String rcustomerphone) {
 		this.rcustomerphone = rcustomerphone;
 	}
-	public ArrayList<String> getRitem() {
+	public String getRitem() {
 		return ritem;
 	}
-	public void setRitem(ArrayList<String> ritem) {
+	public void setRitem(String ritem) {
 		this.ritem = ritem;
 	}
 	

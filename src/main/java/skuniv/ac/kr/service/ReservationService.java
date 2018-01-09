@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 import java.util.TreeMap;
 
 import javax.annotation.Resource;
@@ -76,7 +77,8 @@ public class ReservationService {
 
 	public Reservation set_before_input_customer(String cut, String dye, String pum, String date, String st,String et,String designer) {
 		Reservation reservation=new Reservation();
-		ArrayList<String> choice_hair_list=new ArrayList<String>();
+		String choice_hair_list="";
+		
 		String date_time=date+"/"+st+"~"+et;
 		Map<String,Object> designer_map=designerDao.getDesigner_by_name(designer);
 		
@@ -84,15 +86,22 @@ public class ReservationService {
 		reservation.setRdate(date_time);
 		
 		if(cut.equals("true")) {
-			choice_hair_list.add("cut");
+			choice_hair_list+="Ä¿Æ®-";
 		}
 		if(dye.equals("true")) {
-			choice_hair_list.add("dye");
+			choice_hair_list+="¿°»ö-";
 		}
 		if(pum.equals("true")) {
-			choice_hair_list.add("pum");
+			choice_hair_list+="Æß-";
+		}
+		StringTokenizer tokenizer=new StringTokenizer(choice_hair_list, "-");
+		while(tokenizer.hasMoreTokens()) {
+			
+			reservation.setRitem(tokenizer.nextToken());
+			reservationDao.insert_before_cusphone_reservation(reservation);
 		}
 		reservation.setRitem(choice_hair_list);
+		
 		return reservation;
 	}
 
