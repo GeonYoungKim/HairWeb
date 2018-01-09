@@ -11,7 +11,6 @@
 				    hairweb.qna				
 			]]>
 		</select>
-		
 		<select id="insertQnA" parameterType="hashmap">
 			<![CDATA[
 				INSERT 

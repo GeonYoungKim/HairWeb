@@ -182,7 +182,7 @@
 			Reservation reservation=(Reservation)request.getAttribute("Reservation");
 			Gson gson=new Gson();
 			String json_reservation=gson.toJson(reservation);
-			System.out.println(json_reservation);
+			json_reservation=json_reservation.replaceAll("\"", "'");
 			Random random=new Random();
 			String certification_number="인증번호  ["+(random.nextInt(9000)+1000)+"]";
 			

@@ -22,4 +22,9 @@ public class ReservationDao extends ConnectDB{
 		insert("reservation.insert_before_cusphone_reservation", reservation);
 	}
 
+	public Reservation getReservation_by_dnum_rdate(Reservation reservation) {
+		// TODO Auto-generated method stub
+		return (Reservation)selectOne("reservation.getReservation_by_dnum_rdate", reservation);
+	}
+
 }

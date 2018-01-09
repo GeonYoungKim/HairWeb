@@ -31,6 +31,17 @@
 			]]>
 		</insert>
 		
+		<select id="getReservation_by_dnum_rdate" parameterType="model.Reservation" resultType="model.Reservation">
+			<![CDATA[
+				SELECT
+				    *
+				FROM
+				    hairweb.reservation		
+				WHERE
+					reservation.rdesignernum=#{rdesignernum} and reservation.rdate=#{rdate};	
+			]]>
+		</select>
+		
 		
 
 </mapper>

@@ -75,17 +75,27 @@ public class ReservationController {
 	@RequestMapping(value = "/sms")
 	public String sms(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
-		String json_reservation=request.getParameter("json_reservation");
-		System.out.println(json_reservation);
-		/*Gson gson=new Gson();
-		
-		Reservation reservation=gson.fromJson(json_reservation, Reservation.class);
-		*/
 		
 		
-		/*String charsetType = "EUC-KR"; 
+		
+		
+		String charsetType = "EUC-KR"; 
 		request.setCharacterEncoding(charsetType);
 		response.setCharacterEncoding(charsetType);
+		
+		String json_reservation=request.getParameter("json_reservation");
+		System.out.println(json_reservation);
+		
+		String certification_number=request.getParameter("msg");
+		System.out.println(certification_number);
+		
+		certification_number=certification_number.substring(7, 11);
+		System.out.println(certification_number);
+		
+		Gson gson=new Gson();		
+		Reservation reservation=gson.fromJson(json_reservation, Reservation.class);
+		
+		
 		PrintWriter out=response.getWriter();
 		String  action = nullcheck(request.getParameter("action"), "");
 	    if(action.equals("go")) {
@@ -228,7 +238,10 @@ public class ReservationController {
 	        }
 
 	        out.println("<script>location.href='"+returnurl+"';</script>");
-	    }*/
+	    }
+	    
+	    request.setAttribute("Reservation", reservation);
+	    request.setAttribute("certification_number", certification_number);
 	    return "reservation/reservation_input_customer";
 		
 	}

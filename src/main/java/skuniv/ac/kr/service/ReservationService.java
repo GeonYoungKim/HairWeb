@@ -78,7 +78,7 @@ public class ReservationService {
 	public Reservation set_before_input_customer(String cut, String dye, String pum, String date, String st,String et,String designer) {
 		Reservation reservation=new Reservation();
 		String choice_hair_list="";
-		
+		int item_num=0;
 		String date_time=date+"/"+st+"~"+et;
 		Map<String,Object> designer_map=designerDao.getDesigner_by_name(designer);
 		
@@ -94,13 +94,12 @@ public class ReservationService {
 		if(pum.equals("true")) {
 			choice_hair_list+="Æß-";
 		}
-		StringTokenizer tokenizer=new StringTokenizer(choice_hair_list, "-");
-		while(tokenizer.hasMoreTokens()) {
-			
-			reservation.setRitem(tokenizer.nextToken());
-			reservationDao.insert_before_cusphone_reservation(reservation);
-		}
+		
 		reservation.setRitem(choice_hair_list);
+		reservationDao.insert_before_cusphone_reservation(reservation);
+		
+		reservation=reservationDao.getReservation_by_dnum_rdate(reservation);
+		
 		
 		return reservation;
 	}
