@@ -75,10 +75,6 @@ public class ReservationController {
 	@RequestMapping(value = "/sms")
 	public String sms(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
-		
-		
-		
-		
 		String charsetType = "EUC-KR"; 
 		request.setCharacterEncoding(charsetType);
 		response.setCharacterEncoding(charsetType);
@@ -234,15 +230,16 @@ public class ReservationController {
 	            out.println("<script>alert('" + alert + "')</script>");
 	        }
 	        else if(!(nointeractive.equals("1"))) {
-	            out.println("<script>alert('" + alert + "')</script>");
+	        	System.out.println(alert);
+	            out.printf("<script>alert('%s')</script>",alert);
 	        }
-
 	        out.println("<script>location.href='"+returnurl+"';</script>");
 	    }
 	    
 	    request.setAttribute("Reservation", reservation);
 	    request.setAttribute("certification_number", certification_number);
-	    return "reservation/reservation_input_customer";
+	    
+	    return "reservation/certification_before";
 		
 	}
 	public static String nullcheck(String str,  String Defaultvalue ) throws Exception
@@ -275,8 +272,18 @@ public class ReservationController {
         return result ;
     }
 	
-	
-	
+	@RequestMapping(value = "/confirm_certification")
+	public String confirm_certification(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("EUC-KR");
+		String cer_number=request.getParameter("cer_number");
+		String certification_number=request.getParameter("certification_number");
+		String json_reservation=request.getParameter("json_reservation");
+		
+		System.out.println(cer_number);
+		System.out.println(certification_number);
+		System.out.println(json_reservation);
+		return "reservation/confirmed_certification";
+	}
 	
 
 }

@@ -182,8 +182,9 @@
 			Gson gson=new Gson();
 			String json_reservation=gson.toJson(reservation);
 			json_reservation=json_reservation.replaceAll("\"", "'");
-			Random random=new Random();
-			String certification_number="인증번호  ["+(random.nextInt(9000)+1000)+"]";			
+			
+			String certification_number=(String)request.getAttribute("certification_number");
+			System.out.println(certification_number);
 	%>
 <body class="masthead"
 	style="background-image: url('resources/common/bootstrap/img/Main.jpg')" onload="loadJSON()">
@@ -234,25 +235,22 @@
 												/>
 	                                    </div>
 	                                    <div class="form-group my_margin">
-		                                    <form method="post" name="smsForm22" action="sms">
+		                                    <form method="post" name="smsForm22" action="confirm_certification">
 		                                    	
-		                                        <label class="gun">고객 번호 <star>*</star></label><br/>
-			                                        <input name="rphone"
+		                                        <label class="gun">인증 번호<star>*</star></label><br/>
+			                                        <input name="cer_number"
 			                                               type="text"
 			                                                class="form-control"
 			                                               required="true"
-			                                               placeholder="010-0000-0000 '-'를 다 입력해주세요"
+			                                               placeholder="인증번호를 적어주세요"
 			                                               size="100" 
 			                                               height="80px"
 													/>												
-												<input type="hidden" name="action" value="go">
-												<input type="submit" class="gun2" value="인증요청">
-												<input type="hidden" name="msg" value="<%=certification_number%>">
+												
+												<input type="submit" class="gun2" value="인증 확인">
+												<input type="hidden" name="certification_number" value="<%=certification_number%>">
 												<input type="hidden" name="json_reservation" value="<%=json_reservation%>">
-												<input type="hidden" name="smsType" value="S">
-												<input type="hidden" name="sphone1" value="010">
-												<input type="hidden" name="sphone2" value="4101">
-												<input type="hidden" name="sphone3" value="9304">
+												
 											</form>
 	                                    </div>
 	                                
