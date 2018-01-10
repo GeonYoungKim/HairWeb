@@ -88,17 +88,6 @@
       </div>
     </header>
 <body>
-
-ee
-<%
-	for(int i=0;i<Review_List.size();i++){
-	%>
-		<%=Review_List.get(i).get("r_num")%>
-		<%=Review_List.get(i).get("r_designernum")%>
-		<%=Review_List.get(i).get("r_farmar")%><br>
-	<% }
-%>
-
  <div class="container">
 	<div class="row">
 		<section class="content">
@@ -203,17 +192,6 @@ ee
 		<table class="table table-filter">
 			<tbody>
 				<tr>
-					<td data-status1="valonfam" data-status3="shorthair">
-						<a href="/kr/ReviewHair"><img src="resources/common/bootstrap/img/aaa.jpg" class="hairimg">
-					</a></td>
-					<td data-status1="ccurlfam" data-status3="shoulderhair">
-						<img src="resources/common/bootstrap/img/aab.jpg" class="hairimg">
-					</td>
-					<td data-status1="" data-status3="longhair">
-						<img src="resources/common/bootstrap/img/aac.jpg" class="hairimg">
-					</td>
-				</tr>
-				<tr>
 				<%
 					for(int i=0;i<Review_List.size();i++){
 						int q=Hair_List.size();
@@ -224,8 +202,11 @@ ee
 						while(w!=q){
 							if(Review_List.get(i).get("r_num").equals(Hair_List.get(w).get("r_num"))){
 						%>
-							<td data-status="longhair">
-								<img src="<%=Hair_List.get(w).get("img_src")%>" class="hairimg">
+							<td data-status1="<%=Review_List.get(i).get("r_farmar")%>" data-status2="<%=Review_List.get(i).get("r_magic")%>"
+							  data-status3="<%=Review_List.get(i).get("r_length")%>" data-status4="<%=Review_List.get(i).get("r_color")%>"
+							    data-status5="<%=Review_List.get(i).get("r_care")%>" data-status6="<%=Review_List.get(i).get("r_etc")%>">
+								<img src="<%=Hair_List.get(w).get("img_src")%>" class="hairimg"
+								onclick="location='/kr/ReviewHair?r_num=<%=Hair_List.get(w).get("r_num")%>'">
 							</td>
 						<%
 							break;}w++;

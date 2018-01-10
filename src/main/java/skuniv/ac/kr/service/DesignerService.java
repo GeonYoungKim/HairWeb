@@ -13,8 +13,11 @@ public class DesignerService {
 	private DesignerDao designerDao;
 	
 	public List<Map<String, Object>> selectdesignerList() {
-		
 		return designerDao.selectdesignerList();
 	}
-
+	
+	public List<Map<String,Object>> select_search_hair(int dnum) {
+		// TODO Auto-generated method stub
+		return designerDao.select_search_hair(dnum);
+	}
 }

@@ -31,7 +31,13 @@ public class ReviewController {
 	}
 	
 	@RequestMapping(value = "/ReviewHair")
-	public String studentList2228(HttpServletRequest request) throws Exception {
+	public String reviewHair(HttpServletRequest request) throws Exception {
+		List<Map<String, Object>> review_hair=reviewService.getHair(Integer.parseInt(request.getParameter("r_num")));	
+		List<Map<String, Object>> select_search_designer=reviewService.select_search_designer(Integer.parseInt(request.getParameter("r_num")));	
+		
+		request.setAttribute("review_hair", review_hair);
+		request.setAttribute("select_search_designer", select_search_designer);
+		
 		return "review/reviewhair";
 	}
 }

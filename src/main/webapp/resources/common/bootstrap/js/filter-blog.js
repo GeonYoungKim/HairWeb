@@ -10,24 +10,24 @@ $(document).ready(function () {
     function funlang(){
     	$('input:checkbox[name="length"]').each(function() {
     		if(this.checked){//checked 처리된 항목의 값       	
-    			count++;
-               ckArr[2][count]= this.value;
+    			c1++;
+               ckArr[2][c1]= this.value;
           }
     	});
     }
     function funfar(){
     	$('input:checkbox[name="farmer"]').each(function() {
     		if(this.checked){//checked 처리된 항목의 값       	
-    			c++;
-               ckArr[0][c]= this.value;
+    			count++;
+               ckArr[0][count]= this.value;
           }
     	});
     }
     function funmagic(){
     	$('input:checkbox[name="magic"]').each(function() {
     		if(this.checked){//checked 처리된 항목의 값       	
-    			c1++;
-               ckArr[1][c1]= this.value;
+    			c++;
+               ckArr[1][c]= this.value;
           }
     	});
     }

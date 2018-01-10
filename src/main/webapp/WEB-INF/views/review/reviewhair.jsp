@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +12,12 @@
     <meta name="author" content="">
 
     <title>Clean Blog - Start Bootstrap Theme</title>
+    
+     <% 
+	  List<Map<String, Object>> review_hair=(List<Map<String, Object>>)request.getAttribute("review_hair");
+	  List<Map<String, Object>> select_search_designer=(List<Map<String, Object>>)request.getAttribute("select_search_designer");
+	
+	%>
 
     <!-- Bootstrap core CSS -->
     <link href="resources/common/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -34,24 +42,23 @@
 			.thumb li.on a img {margin:-1px 0 0 -1px;}
 
   	</style>
-  
   </head>
 
   <body>
-    <div id="zoom_img"><img src="resources/common/bootstrap/img/aaa.jpg" style="width:400px; height:550px;" alt="image 1"></div>
+  	<h3>디자이너</h3>
+    <%for(int i=0; i<select_search_designer.size(); i++){%>
+  	 이름: <%=select_search_designer.get(i).get("dname") %><br>
+  	전화번호: <%=select_search_designer.get(i).get("dphone") %><br>
+  	이메일: <%=select_search_designer.get(i).get("demail") %><br>
+  <%} %>
+  
+    <div id="zoom_img"><img src="<%=review_hair.get(0).get("img_src")%>" width=400 height=550 alt="image 1"></div>
 	<ul class="thumb">
-	    <li class="on">
-	        <a href="#"><img src="resources/common/bootstrap/img/aaa.jpg" alt="image 1"></a>
-	    </li>
-	    <li>
-	        <a href="#"><img src="resources/common/bootstrap/img/aab.jpg" alt="image 2"></a>
-	    </li>
-	    <li>
-	        <a href="#"><img src="resources/common/bootstrap/img/aac.jpg" alt="image 3"></a>
-	    </li>
-	    <li>
-	        <a href="#"><img src="resources/common/bootstrap/img/aad.jpg" alt="image 4"></a>
-	    </li>
+	   <%for(int i=0; i<review_hair.size(); i++){%>
+	   	<li>
+	   		 <a href="#"><img src="<%=review_hair.get(i).get("img_src")%>" alt="image <%=i%>"></a>
+	   	</li>
+	   <%} %>
 	</ul>
 
 

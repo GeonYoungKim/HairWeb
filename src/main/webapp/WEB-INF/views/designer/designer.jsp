@@ -78,6 +78,7 @@
         </div>
       </div>
     </header>
+							
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-6">
@@ -97,7 +98,7 @@
                             <i class="glyphicon glyphicon-gift"></i><%=Designer_list.get(i).get("demail")%></p>
                         <!-- Pager -->
 				          <div class="clearfix">
-				            <a class="btn btn-primary" href="Designerprofile">자세히 보기  &rarr;</a>
+				            <a class="btn btn-primary" onclick="location='/kr/Designerprofile?dnum=<%=Designer_list.get(i).get("dnum")%>'">자세히 보기  &rarr;</a>
 				          </div><br /><br />
                     </div>
                     <%}%>

@@ -20,5 +20,13 @@ public class ReviewDao extends ConnectDB{
 		// TODO Auto-generated method stub
 		return (List<Map<String,Object>>)selectList("review.selectHairList");
 	}
+	public List<Map<String, Object>> getHair(int r_num) {
+		// TODO Auto-generated method stub
+		return (List<Map<String,Object>>)selectList("review.getHair",r_num);
+	}
 	
+	public List<Map<String,Object>> select_search_designer(int r_num) {
+		// TODO Auto-generated method stub
+		return (List<Map<String,Object>>)selectList("review.select_search_designer", r_num);
+	}
 }

@@ -19,4 +19,26 @@
 				    hairweb.files				
 			]]>
 		</select>
+		
+		<select id="getHair" parameterType="Integer" resultType="hashmap">
+			<![CDATA[
+				SELECT
+				    *
+				FROM
+				    hairweb.files		
+				WHERE
+					files.r_num=#{r_num};	
+			]]>
+		</select>
+		
+		<select id="select_search_designer" parameterType="Integer" resultType="hashmap">
+			<![CDATA[
+				SELECT
+				    *
+				FROM
+				    hairweb.review r, hairweb.designer d		
+				WHERE
+					r.r_num=#{r_num} and r.r_designernum=d.dnum;	
+			]]>
+		</select>
 </mapper>
