@@ -30,7 +30,8 @@ public class DesignerController {
 	@RequestMapping(value = "/Designerprofile")
 	public String studentList78(HttpServletRequest request) throws Exception {
 		List<Map<String, Object>> select_search_hair=designerService.select_search_hair(Integer.parseInt(request.getParameter("dnum")));		
-		
+		List<Map<String, Object>> designer_list = designerService.selectdesignerList();
+		request.setAttribute("designer_list", designer_list);	
 		request.setAttribute("select_search_hair", select_search_hair);
 		return "designer/designerprofile";
 	}

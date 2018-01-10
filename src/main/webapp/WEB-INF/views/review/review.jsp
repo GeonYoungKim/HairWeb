@@ -16,8 +16,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Clean Blog - Start Bootstrap Theme</title>
-
+    <title>서경 Blue Shop</title>
+    
     <!-- Bootstrap core CSS -->
     <link href="resources/common/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -28,28 +28,38 @@
 
     <!-- Custom styles for this template -->
      <link href="resources/common/bootstrap/css/filter-blog.css" rel="stylesheet">
-      <link href="bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  
-  	<style>
-  		.hairimg{ width: 300px; height:auto;}
-  	</style>
-  
+     
+  <style type="text/css">
+	body{
+		background-size:cover;
+		background-repeat: no-repeat;
+	}
+	.hairimg{ width: 300px; height:auto;}
+	.container{
+		width:80%;
+		height:auto;
+		padding:20px;
+		margin: 0 auto;
+	}
+	.table-container{
+		width:80%;
+		margin: 0 auto;
+	}
+</style>
+
   <%
   	List<Map<String, Object>> Review_List
   	=(List<Map<String,Object>>)request.getAttribute("Review_List"); 	
 	List<Map<String, Object>> Hair_List
   	=(List<Map<String,Object>>)request.getAttribute("Hair_List"); 
 %>
-  
-  
-  
   </head>
 
-  <body>
+  <body class="masthead" style="background-image:url('resources/common/bootstrap/img/Main.jpg')">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand" href="resources/common/bootstrap/index.html">Beauty Salon</a>
+        <a class="navbar-brand" href="/kr/">Seokyoung Beauty Salon</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -57,41 +67,28 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="">Home</a>
+              <a class="nav-link" href="resources/common/bootstrap/index.html"><font size=5>Reservation</font></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="resources/common/bootstrap/designer.html">Designer</a>
+              <a class="nav-link" href="/kr/Designer"><font size=5>Designer</font></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="resources/common/bootstrap/post.html">Sample Post</a>
+              <a class="nav-link" href="/kr/Review"><font size=5>Review</font></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="resources/common/bootstrap/contact.html">Contact</a>
+              <a class="nav-link" href="/kr/QnA"><font size=5>Q&A</font></a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-</body>
-    <!-- Page Header -->
-    <header class="masthead" style="background-image:url('resources/common/bootstrap/img/home-bg.jpg')">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="site-heading">
-              <h1>Clean Blog</h1>
-              <span class="subheading">A Blog Theme by Start Bootstrap</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-<body>
- <div class="container">
+    <br><br><br><br><br><br>
+   
+    
+<div class="container">
 	<div class="row">
 		<section class="content">
-			<div class="col-md-8 col-md-offset-2">
+			<div class="col-md-12 col-md-offset-8">
 				<div class="panel panel-default">
 					<div class="panel-body">
 							<div class="error-notice">
@@ -187,8 +184,9 @@
 					          </div>
 	 						<input type="button" class="button-search" value="검색하기">
 	 	</div></div></div></div></section></div></div>
-
-	 <div class="table-container">
+	
+	
+		<div class="table-container">
 		<table class="table table-filter">
 			<tbody>
 				<tr>

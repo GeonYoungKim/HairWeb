@@ -46,10 +46,10 @@ body{
               <a class="nav-link" href="resources/common/bootstrap/index.html"><font size=5>Reservation</font></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="resources/common/bootstrap/designer.html"><font size=5>Designer</font></a>
+              <a class="nav-link" href="/kr/Designer"><font size=5>Designer</font></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="resources/common/bootstrap/post.html"><font size=5>Review</font></a>
+              <a class="nav-link" href="/kr/Review"><font size=5>Review</font></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/kr/QnA"><font size=5>Q&A</font></a>
@@ -72,11 +72,6 @@ body{
         </div>
       </div>
     </header>
-
-    
-
-    
-
     
     <!-- Bootstrap core JavaScript -->
     <script src="resources/common/bootstrap/vendor/jquery/jquery.min.js"></script>
