@@ -65,7 +65,7 @@
           <i class="fa fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-<<<<<<< HEAD:src/main/webapp/WEB-INF/views/review.jsp
+
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link"
 						href="/kr/reservation"><font size=5>Reservation</font></a>
@@ -79,7 +79,7 @@
 					<li class="nav-item"><a class="nav-link" href="/kr/QnA"><font size=5>Q&A</font></a></li>
 				</ul>
 			</div>
-=======
+
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
               <a class="nav-link" href="resources/common/bootstrap/index.html"><font size=5>Reservation</font></a>
@@ -95,7 +95,7 @@
             </li>
           </ul>
         </div>
->>>>>>> hammo_v1:src/main/webapp/WEB-INF/views/review/review.jsp
+
       </div>
     </nav>
     <br><br><br><br><br><br>

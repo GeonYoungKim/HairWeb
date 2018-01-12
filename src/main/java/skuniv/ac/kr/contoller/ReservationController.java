@@ -284,6 +284,6 @@ public class ReservationController {
 		System.out.println(json_reservation);
 		return "reservation/confirmed_certification";
 	}
-	
+	//중간 합친거 완료
 
 }
