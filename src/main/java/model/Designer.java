@@ -1,10 +1,9 @@
 package model;
 
-public class DesignerVO {
+public class Designer {
 	private int dnum;
 	private String dname;
 	private String dphone;
-	private String demail;
 	public int getDnum() {
 		return dnum;
 	}
@@ -23,12 +22,7 @@ public class DesignerVO {
 	public void setDphone(String dphone) {
 		this.dphone = dphone;
 	}
-	public String getDemail() {
-		return demail;
-	}
-	public void setDemail(String demail) {
-		this.demail = demail;
-	}
+	
 	
 
 }
