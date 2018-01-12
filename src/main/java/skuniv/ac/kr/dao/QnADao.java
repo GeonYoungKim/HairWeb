@@ -12,8 +12,6 @@ import skuniv.ac.kr.connect.ConnectDB;
 @Repository("QnADao")
 public class QnADao extends ConnectDB{
 
-	
-
 	public List<Map<String, Object>> selectQnAList() {
 		// TODO Auto-generated method stub
 		return (List<Map<String,Object>>)selectList("qna.selectQnAList");

@@ -8,9 +8,6 @@ public class QnAVO {
 	private String QnA_body;
 	private int QnA_answer_flag;
 	
-	
-	
-	
 	public int getQnA_answer_flag() {
 		return QnA_answer_flag;
 	}

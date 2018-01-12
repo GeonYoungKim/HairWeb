@@ -33,15 +33,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/c2619/.m2/repository/log4j/log4j/1.2.15/log4j-1.2.15.jar">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="org.eclipse.jst.component.archivename" value="log4j-1.2.15.jar"/>
-			<attribute name="maven.groupId" value="log4j"/>
-			<attribute name="maven.artifactId" value="log4j"/>
-			<attribute name="maven.version" value="1.2.15"/>
-			<attribute name="maven.scope" value="runtime"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/hamoo/Downloads/cos.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

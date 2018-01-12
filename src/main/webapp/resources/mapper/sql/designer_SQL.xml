@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="designer">
+	<select id="selectdesignerList" resultType="hashmap">
+			<![CDATA[
+				SELECT
+				    *
+				FROM
+				    hairweb.designer				
+			]]>
+		</select>
+		<select id="select_search_hair" parameterType="Integer" resultType="hashmap">
+			<![CDATA[
+				SELECT
+				    *
+				FROM
+				    hairweb.review r, hairweb.files f	
+				WHERE
+					r.r_designernum=#{dnum} and r.r_num=f.r_num;
+			]]>
+		</select>
+</mapper>
