@@ -3,6 +3,7 @@
 
 <mapper namespace="designer">
 
+
 	<select id="select_designer_List" resultType="hashmap">
 			<![CDATA[
 				SELECT
@@ -23,6 +24,23 @@
 					designer.dname=#{dname};	
 			]]>
 		</select>
-		
-
+		<select id="selectdesignerList" resultType="hashmap">
+			<![CDATA[
+				SELECT
+				    *
+				FROM
+				    hairweb.designer				
+			]]>
+		</select>
+		<select id="select_search_hair" parameterType="Integer" resultType="hashmap">
+			<![CDATA[
+				SELECT
+				    *
+				FROM
+				    hairweb.review r, hairweb.files f	
+				WHERE
+					r.r_designernum=#{dnum} and r.r_num=f.r_num;
+			]]>
+		</select>
 </mapper>
+

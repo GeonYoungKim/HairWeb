@@ -1,6 +1,6 @@
 package model;
 
-public class Designer {
+public class DesignerVO {
 	private int dnum;
 	private String dname;
 	private String dphone;

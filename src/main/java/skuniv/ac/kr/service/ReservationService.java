@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import model.Designer;
+import model.DesignerVO;
 import model.Reservation;
 import skuniv.ac.kr.dao.DesignerDao;
 import skuniv.ac.kr.dao.QnADao;

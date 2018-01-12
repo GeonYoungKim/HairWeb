@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.List"%>
+<%@page import="java.io.File" %>
+<%@page import="java.awt.image.BufferedImage" %>
+<%@page import="javax.imageio.ImageIO" %>
+<%@page import="java.awt.Image" %>
+<%@page import="java.net.URL" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,8 +16,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Clean Blog - Start Bootstrap Theme</title>
-
+    <title>서경 Blue Shop</title>
+    
     <!-- Bootstrap core CSS -->
     <link href="resources/common/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -21,24 +28,44 @@
 
     <!-- Custom styles for this template -->
      <link href="resources/common/bootstrap/css/filter-blog.css" rel="stylesheet">
-      <link href="bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  
-  	<style>
-  		.hairimg{ width: 300px; height:auto;}
-  	</style>
-  
+     
+  <style type="text/css">
+	body{
+		background-size:cover;
+		background-repeat: no-repeat;
+	}
+	.hairimg{ width: 300px; height:auto;}
+	.container{
+		width:80%;
+		height:auto;
+		padding:20px;
+		margin: 0 auto;
+	}
+	.table-container{
+		width:80%;
+		margin: 0 auto;
+	}
+</style>
+
+  <%
+  	List<Map<String, Object>> Review_List
+  	=(List<Map<String,Object>>)request.getAttribute("Review_List"); 	
+	List<Map<String, Object>> Hair_List
+  	=(List<Map<String,Object>>)request.getAttribute("Hair_List"); 
+%>
   </head>
 
-  <body>
+  <body class="masthead" style="background-image:url('resources/common/bootstrap/img/Main.jpg')">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand" href="resources/common/bootstrap/index.html">Beauty Salon</a>
+        <a class="navbar-brand" href="/kr/">Seokyoung Beauty Salon</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
+<<<<<<< HEAD:src/main/webapp/WEB-INF/views/review.jsp
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link"
 						href="/kr/reservation"><font size=5>Reservation</font></a>
@@ -52,47 +79,35 @@
 					<li class="nav-item"><a class="nav-link" href="/kr/QnA"><font size=5>Q&A</font></a></li>
 				</ul>
 			</div>
+=======
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="resources/common/bootstrap/index.html"><font size=5>Reservation</font></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/kr/Designer"><font size=5>Designer</font></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/kr/Review"><font size=5>Review</font></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/kr/QnA"><font size=5>Q&A</font></a>
+            </li>
+          </ul>
+        </div>
+>>>>>>> hammo_v1:src/main/webapp/WEB-INF/views/review/review.jsp
       </div>
     </nav>
-</body>
-    <!-- Page Header -->
-    <header class="masthead" style="background-image:url('resources/common/bootstrap/img/home-bg.jpg')">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="site-heading">
-              <h1>Clean Blog</h1>
-              <span class="subheading">A Blog Theme by Start Bootstrap</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-<body>
-
+    <br><br><br><br><br><br>
+   
+    
 <div class="container">
 	<div class="row">
 		<section class="content">
-			<div class="col-md-8 col-md-offset-2">
+			<div class="col-md-12 col-md-offset-8">
 				<div class="panel panel-default">
 					<div class="panel-body">
 							<div class="error-notice">
-					          <div class="oaerror danger">
-					            <strong>길이　　</strong>
-					             <label class="checkbox inline">
-								  <input type="checkbox" name="length" value="shorthair"> 숏컷　
-								</label>
-								 <label class="checkbox inline">
-								  <input type="checkbox"name="length" value="shoulderhair"> 단발　
-								</label>
-								 <label class="checkbox inline">
-								  <input type="checkbox" name="length" value="mideumhair"> 미디움 　
-								</label>
-								 <label class="checkbox inline">
-								  <input type="checkbox" name="length" value="longhair"> 긴 머리　
-								</label>
-					          </div>
 					          <div class="oaerror warning">
 					             <strong>펌　　　</strong>
 					            <label class="checkbox inline">
@@ -114,101 +129,106 @@
 					          <div class="oaerror info">
 					            <strong>매직　　</strong>
 					            <label class="checkbox inline">
-								  <input type="checkbox" id="inlineCheckbox1" value="option1"> 뿌리 매직　
+								  <input type="checkbox" name="magic" value="option1"> 뿌리 매직　
 								</label>
 								<label class="checkbox inline">
-								  <input type="checkbox" id="inlineCheckbox2" value="option2"> 볼륨 매직　
+								  <input type="checkbox" name="magic" value="option2"> 볼륨 매직　
 								</label>
 								<label class="checkbox inline">
-								  <input type="checkbox" id="inlineCheckbox3" value="option3"> 일반 매직　
+								  <input type="checkbox" name="magic" value="option3"> 일반 매직　
 								</label>	
 								<label class="checkbox inline">
-								  <input type="checkbox" id="inlineCheckbox3" value="option3"> 클리닉 매직　
+								  <input type="checkbox" name="magic" value="option3"> 클리닉 매직　
 								</label>	
+					          </div>
+					          <div class="oaerror danger">
+					            <strong>길이　　</strong>
+					             <label class="checkbox inline">
+								  <input type="checkbox" name="length" value="shorthair"> 숏컷　
+								</label>
+								 <label class="checkbox inline">
+								  <input type="checkbox"name="length" value="shoulderhair"> 단발　
+								</label>
+								 <label class="checkbox inline">
+								  <input type="checkbox" name="length" value="mideumhair"> 미디움 　
+								</label>
+								 <label class="checkbox inline">
+								  <input type="checkbox" name="length" value="longhair"> 긴 머리　
+								</label>
 					          </div>
 					          <div class="oaerror primary">
 					            <strong>염색　　</strong>
 					            <label class="checkbox inline">
-								  <input type="checkbox" id="inlineCheckbox1" value="option1"> 숏컷　
+								  <input type="checkbox" name="color" value="option1"> 탈색　
 								</label>
 								<label class="checkbox inline">
-								  <input type="checkbox" id="inlineCheckbox2" value="option2"> 단발　
+								  <input type="checkbox" name="color" value="option2"> 단발　
 								</label>
 								<label class="checkbox inline">
-								  <input type="checkbox" id="inlineCheckbox3" value="option3"> 미디엄　
+								  <input type="checkbox" name="color" value="option3"> 미디엄　
 								</label>
 								<label class="checkbox inline">
-								  <input type="checkbox" id="inlineCheckbox3" value="option3"> 장발　
+								  <input type="checkbox" name="color" value="option3"> 장발　
 								</label>	
 					          </div>
 					          <div class="oaerror success">
 					            <strong>케어　　</strong>
 					            <label class="checkbox inline">
-								  <input type="checkbox" id="inlineCheckbox1" value="option1"> 무코타　
+								  <input type="checkbox" name="care" value="option1"> 무코타　
 								</label>
 								<label class="checkbox inline">
-								  <input type="checkbox" id="inlineCheckbox2" value="option2"> 로레알　
+								  <input type="checkbox" name="care" value="option2"> 로레알　
 								</label>
 								<label class="checkbox inline">
-								  <input type="checkbox" id="inlineCheckbox3" value="option3"> 아베다　
+								  <input type="checkbox" name="care" value="option3"> 아베다　
 								</label>
 					          </div>
 					          <div class="oaerror inverse">
 					            <strong>기타　　</strong>
 					            <label class="checkbox inline">
-								  <input type="checkbox" id="inlineCheckbox1" value="option1"> 숏컷　
+								  <input type="checkbox" name="etc" value="option1"> 숏컷　
 								</label>
 								<label class="checkbox inline">
-								  <input type="checkbox" id="inlineCheckbox2" value="option2"> 단발　
+								  <input type="checkbox" name="etc" value="option2"> 단발　
 								</label>
 								<label class="checkbox inline">
-								  <input type="checkbox" id="inlineCheckbox3" value="option3"> 미디엄　
+								  <input type="checkbox" name="etc" value="option3"> 미디엄　
 								</label>
 								<label class="checkbox inline">
-								  <input type="checkbox" id="inlineCheckbox3" value="option3"> 장발　
+								  <input type="checkbox" name="etc" value="option3"> 장발　
 								</label>	
 					          </div>
 	 						<input type="button" class="button-search" value="검색하기">
 	 	</div></div></div></div></section></div></div>
-	 	
-	 <div class="table-container">
-							<table class="table table-filter">
-								<tbody>
-									<tr>
-										<td data-status="shorthair" data-status2="valonfam">
-											<a href="/kr/ReviewHair"><img src="resources/common/bootstrap/img/aaa.jpg" class="hairimg">shorthair
-										</a></td>
-										<td data-status="shoulderhair" data-status2="ccurlfam">
-											<img src="resources/common/bootstrap/img/aab.jpg" class="hairimg">shoulderhair
-										</td>
-										<td data-status="longhair">
-											<img src="resources/common/bootstrap/img/aac.jpg" class="hairimg">longhair
-										</td>
-									</tr>
-									<tr>
-										<td data-status="shorthair">
-											<img src="resources/common/bootstrap/img/aad.jpg" class="hairimg">rr1
-										</td>
-										<td data-status="shoulderhair">
-											<img src="resources/common/bootstrap/img/aae.jpg" class="hairimg">rr2
-										</td>
-										<td data-status="longhair">
-											<img src="resources/common/bootstrap/img/aaf.jpg" class="hairimg">rr3
-										</td>
-									</tr>
-									<tr>
-										<td data-status="shorthair">
-											<img src="resources/common/bootstrap/img/aaa.jpg" class="hairimg">rr1
-										</td>
-										<td data-status="shoulderhair">
-											<img src="resources/common/bootstrap/img/aaa.jpg" class="hairimg">rr2
-										</td>
-										<td data-status="longhair">
-											<img src="resources/common/bootstrap/img/aaa.jpg" class="hairimg">rr3
-										</td>
-									</tr>
-							</tbody></table></div>
-	 
+	
+	
+		<div class="table-container">
+		<table class="table table-filter">
+			<tbody>
+				<tr>
+				<%
+					for(int i=0;i<Review_List.size();i++){
+						int q=Hair_List.size();
+						int w=0; 
+					
+						if(i%3==0){%>
+								</tr><tr>
+						<% }	
+						while(w!=q){
+							if(Review_List.get(i).get("r_num").equals(Hair_List.get(w).get("r_num"))){
+						%>
+							<td data-status1="<%=Review_List.get(i).get("r_farmar")%>" data-status2="<%=Review_List.get(i).get("r_magic")%>"
+							  data-status3="<%=Review_List.get(i).get("r_length")%>" data-status4="<%=Review_List.get(i).get("r_color")%>"
+							    data-status5="<%=Review_List.get(i).get("r_care")%>" data-status6="<%=Review_List.get(i).get("r_etc")%>">
+								<img src="<%=Hair_List.get(w).get("img_src")%>" class="hairimg"
+								onclick="location='/kr/ReviewHair?r_num=<%=Hair_List.get(w).get("r_num")%>'">
+							</td>
+						<%
+							break;}w++;
+						} } %>
+				</tr>
+	</tbody></table></div>
+
 
     <!-- Bootstrap core JavaScript -->
     <script src="resources/common/bootstrap/vendor/jquery/jquery.min.js"></script>

@@ -1,6 +1,6 @@
 package model;
 
-public class Item {
+public class ItemVO {
 	
 	private String itemname;
 	private int itemprice;

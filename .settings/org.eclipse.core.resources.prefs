@@ -1,5 +1,4 @@
 eclipse.preferences.version=1
-encoding//src/main/webapp/WEB-INF/views/designerprofile.jsp=UTF-8
-encoding//src/main/webapp/WEB-INF/views/home.jsp=UTF-8
-encoding//src/main/webapp/WEB-INF/views/review.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/designer/designerprofile.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/review/review.jsp=UTF-8
 encoding//src/main/webapp/resources/common/bootstrap/css/filter-blog.css=UTF-8
