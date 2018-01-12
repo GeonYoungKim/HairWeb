@@ -194,6 +194,7 @@
 					for(int i=0;i<Review_List.size();i++){
 						int q=Hair_List.size();
 						int w=0; 
+					
 						if(i%3==0){%>
 								</tr><tr>
 						<% }	
