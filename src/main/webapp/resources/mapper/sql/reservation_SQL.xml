@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="reservation">
+
+	<select id="select_reservation_List" resultType="hashmap" parameterType="String">
+			<![CDATA[
+				SELECT
+				    *
+				FROM
+				    hairweb.reservation	
+				WHERE 
+					rdate Like CONCAT(#{select_date}, '%')			
+			]]>
+		</select>
+		<insert id="insert_before_cusphone_reservation" parameterType="model.Reservation">
+			<![CDATA[
+				INSERT 
+					INTO
+					 hairweb.reservation
+					  (rnum,
+					  rdesignernum,
+					  rdate,
+					  ritem)
+					 VALUES (
+					 #{rnum},
+					 #{rdesignernum},
+					 #{rdate},
+					 #{ritem}		 	 
+					 );			
+			]]>
+		</insert>
+		
+		<select id="getReservation_by_dnum_rdate" parameterType="model.Reservation" resultType="model.Reservation">
+			<![CDATA[
+				SELECT
+				    *
+				FROM
+				    hairweb.reservation		
+				WHERE
+					reservation.rdesignernum=#{rdesignernum} and reservation.rdate=#{rdate};	
+			]]>
+		</select>
+		
+		
+
+</mapper>

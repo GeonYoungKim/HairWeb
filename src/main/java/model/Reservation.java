@@ -1,11 +1,12 @@
 package model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Reservation {
 	private int rnum;
 	private int rdesignernum;
-	private Date rdate;
+	private String rdate;
 	private String rcustomerphone;
 	private String ritem;
 	public int getRnum() {
@@ -20,10 +21,10 @@ public class Reservation {
 	public void setRdesignernum(int rdesignernum) {
 		this.rdesignernum = rdesignernum;
 	}
-	public Date getRdate() {
+	public String getRdate() {
 		return rdate;
 	}
-	public void setRdate(Date rdate) {
+	public void setRdate(String rdate) {
 		this.rdate = rdate;
 	}
 	public String getRcustomerphone() {

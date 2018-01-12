@@ -11,7 +11,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import model.Designer;
+
+import model.DesignerVO;
+
 import model.Reservation;
 import skuniv.ac.kr.dao.DesignerDao;
 import skuniv.ac.kr.dao.QnADao;
@@ -34,7 +36,9 @@ public class ReservationService {
 	public void init_reservation_map(Map<String,String> reservation_map ){
 		
 		for(int i=0;i<reservation_times.length;i++) {
+
 			reservation_map.put(reservation_times[i], "가능");			
+
 		}
 		
 	}
@@ -64,7 +68,9 @@ public class ReservationService {
 							swich=0;							
 						}
 						if(swich==1) {
-							reservation_map.put(time, "ºÒ°¡´É");
+
+							reservation_map.put(time, "불가능");
+
 						}
 					}
 				}
@@ -86,6 +92,7 @@ public class ReservationService {
 		reservation.setRdate(date_time);
 		
 		if(cut.equals("true")) {
+
 			choice_hair_list+="Ä¿Æ®-";
 		}
 		if(dye.equals("true")) {
@@ -93,6 +100,15 @@ public class ReservationService {
 		}
 		if(pum.equals("true")) {
 			choice_hair_list+="Æß-";
+
+			choice_hair_list+="ĿƮ-";
+		}
+		if(dye.equals("true")) {
+			choice_hair_list+="����-";
+		}
+		if(pum.equals("true")) {
+			choice_hair_list+="��-";
+
 		}
 		
 		reservation.setRitem(choice_hair_list);
@@ -104,4 +120,6 @@ public class ReservationService {
 		return reservation;
 	}
 
+
 }
+

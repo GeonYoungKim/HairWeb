@@ -284,5 +284,8 @@ public class ReservationController {
 		System.out.println(json_reservation);
 		return "reservation/confirmed_certification";
 	}
-}
+
 	
+
+}
+

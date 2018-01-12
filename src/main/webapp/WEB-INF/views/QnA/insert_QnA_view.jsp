@@ -86,7 +86,7 @@ button[type=submit]{
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link"
-						href="resources/common/bootstrap/index.html"><font size=5>Reservation</font></a>
+						href="/kr/reservation"><font size=5>Reservation</font></a>
 					</li>
 					<li class="nav-item"><a class="nav-link"
 						href="resources/common/bootstrap/designer.html"><font size=5>Designer</font></a>

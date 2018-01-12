@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -67,17 +68,22 @@ body {
 .row{
 	width: 800px; 
 	height: 800px;
-	margin-left: 0px;
-	padding: 25px 25px 25px 25px;
-	background-color: white;
-}
-.container{
 	
 }
+
 #fullCalendar{
 	width: 800px; 
 	height: 800px; 
+	margin-left: 0px;
+	padding: 25px 25px 25px 25px;
+	
 }
+#tb{
+	width: 100%; 
+	background-color: white;
+}
+
+
 </style></head>
 
 <body class="masthead"
@@ -96,7 +102,7 @@ body {
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link"
-						href="resources/common/bootstrap/index.html"><font size=5>Reservation</font></a>
+						href="/kr/reservation"><font size=5>Reservation</font></a>
 					</li>
 					<li class="nav-item"><a class="nav-link"
 						href="resources/common/bootstrap/designer.html"><font size=5>Designer</font></a>
@@ -111,9 +117,15 @@ body {
 	</nav>
 	<br><br><br><br><br><br><br><br>
 	
-		<div class="row">
-	          	<div id="fullCalendar"></div>
-		</div>
+	<div class="row">
+		<table  CELLPADDING="5" ALIGN="center" >
+			<TR id="tb">
+				<td><div id="fullCalendar"></div></td>
+				<td></td>
+				
+			</TR>
+		</table>	          	
+	</div>
 	
 </body>
 
@@ -171,7 +183,7 @@ body {
 	<script src="resources/common/quickpoll_bootstrap/assets/js/paper-dashboard.js"></script>
 
 	<!-- Paper Dashboard PRO DEMO methods, don't include it in your project! -->
-	<script src="resources/common/quickpoll_bootstrap/assets/js/demo.js?ver1=1"></script>
+	<script src="resources/common/quickpoll_bootstrap/assets/js/demo.js?ver1=2"></script>
 <!-- Custom scripts for this template -->
 	<script src="resources/common/bootstrap/js/clean-blog.min.js"></script>
 <script

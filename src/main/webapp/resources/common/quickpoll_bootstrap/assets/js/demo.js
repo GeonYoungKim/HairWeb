@@ -1,10 +1,7 @@
 type = ['','info','success','warning','danger'];
-
-
 demo = {
 
     initCirclePercentage: function(){
-
             $('#chartDashboard, #chartOrders, #chartNewVisitors, #chartSubscriptions').easyPieChart({
         		lineWidth: 6,
         		size: 160,
@@ -14,10 +11,7 @@ demo = {
         		animate: ({duration: 5000, enabled: true})
 
             });
-
-
     },
-
     initGoogleMaps: function(){
 
     // Satellite Map
@@ -497,20 +491,17 @@ demo = {
             	   showConfirmButton: false
                 });
     	} else if(type == 'input-field'){
+    		$time = $('#time');
             swal({
-                  title: 'Input something',
-                  html: '<p><input id="input-field" class="form-control">',
+                  title: '원하는 헤어를 고르세요',
+                  html: '<big><input type="checkbox" name="cut" id="cut">커트</big><big><input type="checkbox" name="dye" id="dye" >염색</big><big><input type="checkbox" name="pum" id="pum" >펌</big>',
                   showCancelButton: true,
                   closeOnConfirm: false,
                   allowOutsideClick: false
                 },
                 function() {
-                  swal({
-                    html:
-                      'You entered: <strong>' +
-                      $('#input-field').val() +
-                      '</strong>'
-                  });
+                	location.replace("http://localhost:8080/kr/test?cut="+$('#cut').prop('checked')+"&dye="+$('#dye').prop('checked')+"&pum="+$('#pum').prop('checked'));
+                  
                 })
         }
 	},
@@ -632,28 +623,7 @@ demo = {
             select: function(start, end) {
             	
             	// on select we show the Sweet Alert modal with an input
-				swal({
-    				title: 'Create an Event',
-    				html: '<br><input class="form-control" placeholder="Event Title" id="input-field">',
-    				showCancelButton: true,
-    				closeOnConfirm: true
-                }, function() {
-
-                    var eventData;
-                    event_title = $('#input-field').val();
-
-                    if (event_title) {
-    					eventData = {
-    						title: event_title,
-    						start: start,
-    						end: end
-    					};
-    					location.replace("http://localhost:8080/kr/reservation_select_day?y="+end+"&m="+event_title+"&d="+start);
-    					$calendar.fullCalendar('renderEvent', eventData, true); // stick? = true
-    				}
-    				$calendar.fullCalendar('unselect');
-
-                });
+            	location.replace("http://localhost:8080/kr/reservation_select_day?date="+start.format('YYYY-MM-DD'));
 			},
 			
 			editable: true,
