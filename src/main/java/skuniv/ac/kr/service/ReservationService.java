@@ -34,7 +34,7 @@ public class ReservationService {
 	public void init_reservation_map(Map<String,String> reservation_map ){
 		
 		for(int i=0;i<reservation_times.length;i++) {
-			reservation_map.put(reservation_times[i], "°¡´É");			
+			reservation_map.put(reservation_times[i], "ê°€ëŠ¥");			
 		}
 		
 	}
@@ -64,7 +64,7 @@ public class ReservationService {
 							swich=0;							
 						}
 						if(swich==1) {
-							reservation_map.put(time, "ºÒ°¡´É");
+							reservation_map.put(time, "ë¶ˆê°€ëŠ¥");
 						}
 					}
 				}
@@ -86,13 +86,13 @@ public class ReservationService {
 		reservation.setRdate(date_time);
 		
 		if(cut.equals("true")) {
-			choice_hair_list+="Ä¿Æ®-";
+			choice_hair_list+="ì»¤íŠ¸-";
 		}
 		if(dye.equals("true")) {
-			choice_hair_list+="¿°»ö-";
+			choice_hair_list+="ì—¼ìƒ‰-";
 		}
 		if(pum.equals("true")) {
-			choice_hair_list+="Æß-";
+			choice_hair_list+="íŽŒ-";
 		}
 		
 		reservation.setRitem(choice_hair_list);

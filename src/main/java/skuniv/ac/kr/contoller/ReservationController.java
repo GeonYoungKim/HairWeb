@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import model.Reservation;
 import skuniv.ac.kr.service.ReservationService;
@@ -97,14 +98,15 @@ public class ReservationController {
 	    if(action.equals("go")) {
 
 	        String sms_url = "";
-	        sms_url = "https://sslsms.cafe24.com/sms_sender.php"; // SMS Àü¼Û¿äÃ» URL
-	        String user_id = base64Encode("c2619zz"); // SMS¾ÆÀÌµğ
-	        String secure = base64Encode("c498757e8e5aec4a77a07c684f92f2ec");//ÀÎÁõÅ°
+	        sms_url = "https://sslsms.cafe24.com/sms_sender.php"; // SMS ï¿½ï¿½ï¿½Û¿ï¿½Ã» URL
+	        String user_id = base64Encode("c2619zz"); // SMSï¿½ï¿½ï¿½Ìµï¿½
+	        String secure = base64Encode("c498757e8e5aec4a77a07c684f92f2ec");//ï¿½ï¿½ï¿½ï¿½Å°
 	        String msg = base64Encode(nullcheck(request.getParameter("msg"), ""));
 	        String rphone = base64Encode(nullcheck(request.getParameter("rphone"), ""));
 	        String sphone1 = base64Encode(nullcheck(request.getParameter("sphone1"), ""));
 	        String sphone2 = base64Encode(nullcheck(request.getParameter("sphone2"), ""));
 	        String sphone3 = base64Encode(nullcheck(request.getParameter("sphone3"), ""));
+	        
 	        String rdate = base64Encode(nullcheck(request.getParameter("rdate"), ""));
 	        String rtime = base64Encode(nullcheck(request.getParameter("rtime"), ""));
 	        String mode = base64Encode("1");
@@ -126,7 +128,7 @@ public class ReservationController {
 	        String path = "/" + host_info[3];
 	        int port = 80;
 
-	        // µ¥ÀÌÅÍ ¸ÊÇÎ º¯¼ö Á¤ÀÇ
+	        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	        String arrKey[]
 	            = new String[] {"user_id","secure","msg", "rphone","sphone1","sphone2","sphone3","rdate","rtime"
 	                        ,"mode","testflag","destination","repeatFlag","repeatNum", "repeatTime", "smsType", "subject"};
@@ -162,7 +164,7 @@ public class ReservationController {
 	        }
 	        boundary = "---------------------"+boundary.substring(0,11);
 
-	        // º»¹® »ı¼º
+	        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	        String data = "";
 	        String index = "";
 	        String value = "";
@@ -180,18 +182,18 @@ public class ReservationController {
 
 	        InetAddress addr = InetAddress.getByName(host);
 	        Socket socket = new Socket(host, port);
-	        // Çì´õ Àü¼Û
+	        // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	        BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(),charsetType));
 	        wr.write("POST "+path+" HTTP/1.0\r\n");
 	        wr.write("Content-Length: "+data.length()+"\r\n");
 	        wr.write("Content-type: multipart/form-data, boundary="+boundary+"\r\n");
 	        wr.write("\r\n");
 
-	        // µ¥ÀÌÅÍ Àü¼Û
+	        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	        wr.write(data);
 	        wr.flush();
 
-	        // °á°ú°ª ¾ò±â
+	        // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	        BufferedReader rd = new BufferedReader(new InputStreamReader(socket.getInputStream(),charsetType));
 	        String line;
 	        String alert = "";
@@ -204,21 +206,21 @@ public class ReservationController {
 
 	        String tmpMsg = (String)tmpArr.get(tmpArr.size()-1);
 	        String[] rMsg = tmpMsg.split(",");
-	        String Result= rMsg[0]; //¹ß¼Û°á°ú
-	        String Count= ""; //ÀÜ¿©°Ç¼ö
+	        String Result= rMsg[0]; //ï¿½ß¼Û°ï¿½ï¿½
+	        String Count= ""; //ï¿½Ü¿ï¿½ï¿½Ç¼ï¿½
 	        if(rMsg.length>1) {Count= rMsg[1]; }
 
-	                        //¹ß¼Û°á°ú ¾Ë¸²
+	                        //ï¿½ß¼Û°ï¿½ï¿½ ï¿½Ë¸ï¿½
 	        if(Result.equals("success")) {
-	            alert = "¼º°øÀûÀ¸·Î ¹ß¼ÛÇÏ¿´½À´Ï´Ù.";
+	            alert = "ì˜ˆì•½ì´ ë˜ì—ˆìŠµë‹ˆë‹¤.";
 	            
 	        }
 	        else if(Result.equals("reserved")) {
-	            alert = "¼º°øÀûÀ¸·Î ¿¹¾àµÇ¾ú½À´Ï´Ù";
-	            alert += " ÀÜ¿©°Ç¼ö´Â "+ Count+"°Ç ÀÔ´Ï´Ù.";
+	            alert = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½";
+	            alert += " ï¿½Ü¿ï¿½ï¿½Ç¼ï¿½ï¿½ï¿½ "+ Count+"ï¿½ï¿½ ï¿½Ô´Ï´ï¿½.";
 	        }
 	        else if(Result.equals("3205")) {
-	            alert = "Àß¸øµÈ ¹øÈ£Çü½ÄÀÔ´Ï´Ù.";
+	            alert = "ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.";
 	        }
 	        else {
 	            alert = "[Error]"+Result;
@@ -236,6 +238,7 @@ public class ReservationController {
 	        out.println("<script>location.href='"+returnurl+"';</script>");
 	    }
 	    
+	    request.setAttribute("phone",(request.getParameter("rphone")).replaceAll("-", ""));
 	    request.setAttribute("Reservation", reservation);
 	    request.setAttribute("certification_number", certification_number);
 	    
@@ -274,16 +277,23 @@ public class ReservationController {
 	
 	@RequestMapping(value = "/confirm_certification")
 	public String confirm_certification(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("EUC-KR");
-		String cer_number=request.getParameter("cer_number");
-		String certification_number=request.getParameter("certification_number");
+		Gson gson=new Gson();
+		request.setCharacterEncoding("UTF-8");
+		String phone=request.getParameter("phone");
 		String json_reservation=request.getParameter("json_reservation");
 		
-		System.out.println(cer_number);
-		System.out.println(certification_number);
-		System.out.println(json_reservation);
+		JsonObject jsonObject=gson.fromJson(json_reservation, JsonObject.class);
+		
+		phone="0"+phone;
+		System.out.println(phone);
+		System.out.println(jsonObject.get("rnum"));
 		return "reservation/confirmed_certification";
 	}
-	//Áß°£ ÇÕÄ£°Å ¿Ï·á
-
+	@RequestMapping(value = "/and_test")
+	public void and_test(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("UTF-8");
+		System.out.println(request.getParameter("test"));
+		System.out.println("and_test");
+		
+	}
 }

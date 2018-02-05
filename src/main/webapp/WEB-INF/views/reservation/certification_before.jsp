@@ -1,8 +1,8 @@
 <%@page import="com.google.gson.Gson"%>
 <%@page import="java.util.Random"%>
 <%@page import="model.Reservation"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html lang="en">
@@ -120,6 +120,19 @@
 		}
 		
 		</style>
+		<%
+			Reservation reservation=(Reservation)request.getAttribute("Reservation");
+			Gson gson=new Gson();
+			String json_reservation=gson.toJson(reservation);
+            json_reservation=json_reservation.replaceAll("\"", "'");
+           	System.out.println(json_reservation);
+            String phone=(String)request.getAttribute("phone");
+            
+			System.out.println(phone);
+			
+			String certification_number=(String)request.getAttribute("certification_number");
+			System.out.println(certification_number);
+		%>
 		 <script type="text/javascript">
             function setPhoneNumber(val) {
                 var numList = val.split("-");
@@ -147,7 +160,7 @@
                             http_request = new ActiveXObject("Microsoft.XMLHTTP");
                         } catch (e) {
                             // Eror
-                            alert("Áö¿øÇÏÁö ¾Ê´Âºê¶ó¿ìÀú!");
+                            alert("ì§€ì›í•˜ì§€ ì•ŠëŠ”ë¸Œë¼ìš°ì €!");
                             return false;
                         }
 
@@ -160,7 +173,7 @@
                         if (jsonObj['result'] == "Success") {
                             var aList = jsonObj['list'];
                             var selectHtml = "<select name=\"sendPhone\" onchange=\"setPhoneNumber(this.value)\">";
-                            selectHtml += "<option value='' selected>¹ß½Å¹øÈ£¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä</option>";
+                            selectHtml += "<option value='' selected>ë°œì‹ ë²ˆí˜¸ë¥¼ ì„ íƒí•´ì£¼ì„¸ìš”</option>";
                             for (var i = 0; i < aList.length; i++) {
                                 selectHtml += "<option value=\"" + aList[i] + "\">";
                                 selectHtml += aList[i];
@@ -176,16 +189,35 @@
                 http_request.send();
             }
         </script>
+        <script type="text/javascript">
+        	function certification(input_number,certification_number,json_reservation){
+				var json_reservation_parse=JSON.stringify(json_reservation);
+        		var input_number=input_number;
+        		var certification_number=certification_number;
+        		
+        		if(input_number==certification_number){
+        			$(document).ready(function(){
+        			 $.ajax({	
+        		            type : "GET",
+        		            url : "http://localhost:8080/kr/confirm_certification?phone="+<%=phone%>+"&json_reservation="+encodeURI(json_reservation_parse),
+        		            dataType : "text",
+        		            error : function(){
+        		                alert('í†µì‹ ì‹¤íŒ¨!!');
+        		            },
+        		            success : function(data){
+        		                alert("í†µì‹ ë°ì´í„° ê°’ : " + data) ;
+        		               
+        		            }
+        		             
+        		        });
+        			});
+        		}else{
+        			alert("í‹€ë ¸ìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+        		}
+        	}
+        </script>
 </head>
-	<%
-			Reservation reservation=(Reservation)request.getAttribute("Reservation");
-			Gson gson=new Gson();
-			String json_reservation=gson.toJson(reservation);
-			json_reservation=json_reservation.replaceAll("\"", "'");
-			
-			String certification_number=(String)request.getAttribute("certification_number");
-			System.out.println(certification_number);
-	%>
+	
 <body class="masthead"
 	style="background-image: url('resources/common/bootstrap/img/Main.jpg')" onload="loadJSON()">
 		<!-- Navigation -->
@@ -221,12 +253,12 @@
 	                            <div id="loginFormValidation">
 	                                <div class="header text-center my_margin">
 										<h4 class="title gun">
-											°í°´ Á¤º¸ ÀÔ·Â
+											ê³ ê° ì •ë³´ ì…ë ¥
 										</h4>
 									</div>
 	                                <div class="content">
 	                                    <div class="form-group my_marqgin">
-	                                        <label class="gun">°í°´ ÀÌ¸§ <star>*</star></label><br/>
+	                                        <label class="gun">ê³ ê° ì´ë¦„ <star>*</star></label><br/>
 		                                        <input  class="form-control"
 		                                               name="name"
 		                                               type="text"
@@ -235,27 +267,22 @@
 												/>
 	                                    </div>
 	                                    <div class="form-group my_margin">
-		                                    <form method="post" name="smsForm22" action="confirm_certification">
-		                                    	
-		                                        <label class="gun">ÀÎÁõ ¹øÈ£<star>*</star></label><br/>
-			                                        <input name="cer_number"
+		                                        <label class="gun">ì¸ì¦ ë²ˆí˜¸<star>*</star></label><br/>
+			                                        <input id="cer_number"
 			                                               type="text"
 			                                                class="form-control"
 			                                               required="true"
-			                                               placeholder="ÀÎÁõ¹øÈ£¸¦ Àû¾îÁÖ¼¼¿ä"
+			                                               placeholder="ì¸ì¦ë²ˆí˜¸ë¥¼ ì ì–´ì£¼ì„¸ìš”"
 			                                               size="100" 
 			                                               height="80px"
 													/>												
 												
-												<input type="submit" class="gun2" value="ÀÎÁõ È®ÀÎ">
-												<input type="hidden" name="certification_number" value="<%=certification_number%>">
-												<input type="hidden" name="json_reservation" value="<%=json_reservation%>">
+												<button class="gun2" onclick="certification(cer_number.value,<%=certification_number%>,<%=json_reservation.toString()%>)">ì¸ì¦í™•ì¸</button>
 												
-											</form>
 	                                    </div>
 	                                
 		                                <div class="form-group my_margin">								
-											<button  class="btn btn-info btn-fill btn-wd com" >¿¹¾àÇÏ±â</button>
+											<button  class="btn btn-info btn-fill btn-wd com" >ì˜ˆì•½í•˜ê¸°</button>
 											<button  class="btn btn-info btn-wd kaka">kakao</button>
 											<button  class="btn btn-info btn-wd naver" >naver</button>	
 										</div>	

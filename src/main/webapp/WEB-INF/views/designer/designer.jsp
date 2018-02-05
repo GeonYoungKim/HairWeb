@@ -102,9 +102,9 @@ a {
        			<div class="well well-sm">
        				<div class="row"><%
 					int i = 0;	
-					for(i=0; i<Designer_list.size(); i++){%>
+					for(i=1; i<4; i++){%>
        					<div class="col-xs-6 col-md-6">
-       						  <img src="http://placehold.it/180x250" alt="" class="img-rounded img-responsive" />
+       						  <img src="resources/common/bootstrap/img/d_<%=i %>.jpg" alt="" class="img-rounded img-responsive" />
                     	</div>
                     	<div class="col-xs-6 col-md-6">
                     		<h4><%=Designer_list.get(i).get("dname")%><br></h4>
