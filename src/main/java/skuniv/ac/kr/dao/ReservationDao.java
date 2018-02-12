@@ -17,9 +17,9 @@ public class ReservationDao extends ConnectDB{
 		return (List<Map<String, Object>>)selectList("reservation.select_reservation_List",select_date);
 	}
 
-	public void insert_before_cusphone_reservation(Reservation reservation) {
+	public void insert_reservation(Reservation reservation) {
 		// TODO Auto-generated method stub
-		insert("reservation.insert_before_cusphone_reservation", reservation);
+		insert("reservation.insert_reservation", reservation);
 	}
 
 	public Reservation getReservation_by_dnum_rdate(Reservation reservation) {

@@ -134,6 +134,7 @@
 			System.out.println(certification_number);
 		%>
 		 <script type="text/javascript">
+		 	var data;
             function setPhoneNumber(val) {
                 var numList = val.split("-");
                 document.smsForm.sphone1.value = numList[0];
@@ -188,8 +189,7 @@
                 http_request.open("GET", data_file, true);
                 http_request.send();
             }
-        </script>
-        <script type="text/javascript">
+        
         	function certification(input_number,certification_number,json_reservation){
 				var json_reservation_parse=JSON.stringify(json_reservation);
         		var input_number=input_number;
@@ -199,14 +199,20 @@
         			$(document).ready(function(){
         			 $.ajax({	
         		            type : "GET",
+        		            dataType: "text",
+        		            async: true,
+        		    		contentType:"application/json;charset=UTF-8",
         		            url : "http://localhost:8080/kr/confirm_certification?phone="+<%=phone%>+"&json_reservation="+encodeURI(json_reservation_parse),
-        		            dataType : "text",
+        		            
         		            error : function(){
         		                alert('통신실패!!');
         		            },
-        		            success : function(data){
-        		                alert("통신데이터 값 : " + data) ;
-        		               
+        		            success : function(responseData){
+        		            	data=responseData
+        		            	alert("맞았습니다.") 
+        		            	$("#change_label").text("고객번호");
+        		            	$("#cer_number").attr("disabled",true).attr("readonly",false);
+
         		            }
         		             
         		        });
@@ -214,6 +220,29 @@
         		}else{
         			alert("틀렸습니다. 다시 입력해주세요.");
         		}
+        	}
+        	function reservation(input_name){
+        		var rcustomername=input_name;
+        		$(document).ready(function(){
+       			 $.ajax({	
+       		            type : "POST",
+       		            dataType: "text",
+       		            async: true,
+       		    		contentType:"application/json;charset=UTF-8",
+       		            url : "http://localhost:8080/kr/confirmed_certification?reservation="+encodeURI(data)+"&rcustomername="+encodeURI(rcustomername),
+       		            error : function(){
+       		                alert('통신실패!!');
+       		            },
+       		            success : function(responseData){
+       		            	var sms_designer_information=JSON.parse(responseData);
+       		            	
+							var msg=sms_designer_information.customer_name+"고객님이 "+sms_designer_information.reservation_date+" 시간에 예약하셨습니다.";
+       		            	location.replace("http://localhost:8080/kr/sms_desinger?rphone="+encodeURI(sms_designer_information.designer_phone)+"&action=go&msg="+encodeURI(msg)+"&smsType=S&sphone1=010&sphone2=4101&sphone3=9304");
+       		            
+       		            }
+       		             
+       		        });
+       			});
         	}
         </script>
 </head>
@@ -260,6 +289,7 @@
 	                                    <div class="form-group my_marqgin">
 	                                        <label class="gun">고객 이름 <star>*</star></label><br/>
 		                                        <input  class="form-control"
+		                                        		id="input_name"
 		                                               name="name"
 		                                               type="text"
 		                                               required="true"
@@ -267,7 +297,7 @@
 												/>
 	                                    </div>
 	                                    <div class="form-group my_margin">
-		                                        <label class="gun">인증 번호<star>*</star></label><br/>
+		                                        <label class="gun" id="change_label">인증 번호<star>*</star></label><br/>
 			                                        <input id="cer_number"
 			                                               type="text"
 			                                                class="form-control"
@@ -282,7 +312,7 @@
 	                                    </div>
 	                                
 		                                <div class="form-group my_margin">								
-											<button  class="btn btn-info btn-fill btn-wd com" >예약하기</button>
+											<button  class="btn btn-info btn-fill btn-wd com" onclick="reservation(input_name.value)" >예약하기</button>
 											<button  class="btn btn-info btn-wd kaka">kakao</button>
 											<button  class="btn btn-info btn-wd naver" >naver</button>	
 										</div>	

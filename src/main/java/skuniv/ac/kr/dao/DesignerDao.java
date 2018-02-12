@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
+import model.DesignerVO;
 import skuniv.ac.kr.connect.ConnectDB;
 
 @SuppressWarnings("unchecked")
@@ -33,5 +34,10 @@ public class DesignerDao extends ConnectDB{
 		// TODO Auto-generated method stub
 		return (List<Map<String,Object>>)selectList("designer.select_search_hair", dnum);
 
+	}
+
+	public Map<String, Object> getdesigner_dnum(int rdesignernum) {
+		
+		return (Map<String,Object>)selectOne("designer.getdesigner_dnum", rdesignernum);
 	}
 }

@@ -86,22 +86,31 @@ public class ReservationService {
 		reservation.setRdate(date_time);
 		
 		if(cut.equals("true")) {
-			choice_hair_list+="커트-";
+			choice_hair_list+="cut-";
 		}
 		if(dye.equals("true")) {
-			choice_hair_list+="염색-";
+			choice_hair_list+="dye-";
 		}
 		if(pum.equals("true")) {
-			choice_hair_list+="펌-";
+			choice_hair_list+="pum-";
 		}
 		
 		reservation.setRitem(choice_hair_list);
-		reservationDao.insert_before_cusphone_reservation(reservation);
+//		reservationDao.insert_before_cusphone_reservation(reservation);
 		
-		reservation=reservationDao.getReservation_by_dnum_rdate(reservation);
-		
+//		reservation=reservationDao.getReservation_by_dnum_rdate(reservation);		
 		
 		return reservation;
+	}
+
+	public void insert_reservation(Reservation reservation) {
+		reservationDao.insert_reservation(reservation);
+		
+	}
+
+	public Map<String, Object> getdesigner_dnum(int rdesignernum) {
+		
+		return designerDao.getdesigner_dnum(rdesignernum);
 	}
 
 }

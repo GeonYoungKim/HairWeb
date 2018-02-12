@@ -24,6 +24,16 @@
 					designer.dname=#{dname};	
 			]]>
 		</select>
+		<select id="getdesigner_dnum" parameterType="Integer" resultType="hashmap">
+			<![CDATA[
+				SELECT
+				    *
+				FROM
+				    hairweb.designer		
+				WHERE
+					designer.dnum=#{dnum};	
+			]]>
+		</select>
 		<select id="selectdesignerList" resultType="hashmap">
 			<![CDATA[
 				SELECT

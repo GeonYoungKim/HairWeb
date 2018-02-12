@@ -200,7 +200,7 @@ body {
     		                				demo2.showNotification('top','center');  
     		                				window.close();
     		                			}else{
-    		                				location.replace("http://localhost:8080/kr/reservation_input_customer?cut="+$('#cut').prop('checked')+"&dye="+$('#dye').prop('checked')+"&pum="+$('#pum').prop('checked')+"&date="+date+"&st="+st+"&designer="+d+"&et="+et);
+    		                				location.assign("http://localhost:8080/kr/reservation_input_customer?cut="+$('#cut').prop('checked')+"&dye="+$('#dye').prop('checked')+"&pum="+$('#pum').prop('checked')+"&date="+date+"&st="+st+"&designer="+d+"&et="+et);
     		                			}
     		                		}
     		                	});

@@ -9,6 +9,15 @@ public class Reservation {
 	private String rdate;
 	private String rcustomerphone;
 	private String ritem;
+	private String rcustomername;
+	
+	
+	public String getRcustomername() {
+		return rcustomername;
+	}
+	public void setRcustomername(String rcustomername) {
+		this.rcustomername = rcustomername;
+	}
 	public int getRnum() {
 		return rnum;
 	}

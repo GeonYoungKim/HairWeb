@@ -13,7 +13,7 @@
 					rdate Like CONCAT(#{select_date}, '%')			
 			]]>
 		</select>
-		<insert id="insert_before_cusphone_reservation" parameterType="model.Reservation">
+		<insert id="insert_reservation" parameterType="model.Reservation">
 			<![CDATA[
 				INSERT 
 					INTO
@@ -21,12 +21,16 @@
 					  (rnum,
 					  rdesignernum,
 					  rdate,
-					  ritem)
+					  rcustomerphone,
+					  ritem,
+					  rcustomername)
 					 VALUES (
 					 #{rnum},
 					 #{rdesignernum},
 					 #{rdate},
-					 #{ritem}		 	 
+					 #{rcustomerphone},
+					 #{ritem},
+					 #{rcustomername}		 	 
 					 );			
 			]]>
 		</insert>
