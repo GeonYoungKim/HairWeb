@@ -1,51 +1,51 @@
 package model;
 
 public class DesignerVO {
-	private int dnum;
-	private String dname;
-	private String dphone;
-	private String demail;
-	private String dsrc;
-	private String dpassword;
-	
-	
-	public String getDemail() {
-		return demail;
+	private int num;
+	private String name;
+	private String phone;
+	private String email;
+	private String src;
+	private String password;
+	public int getNum() {
+		return num;
 	}
-	public void setDemail(String demail) {
-		this.demail = demail;
+	public void setNum(int num) {
+		this.num = num;
 	}
-	public String getDsrc() {
-		return dsrc;
+	public String getName() {
+		return name;
 	}
-	public void setDsrc(String dsrc) {
-		this.dsrc = dsrc;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getDpassword() {
-		return dpassword;
+	public String getPhone() {
+		return phone;
 	}
-	public void setDpassword(String dpassword) {
-		this.dpassword = dpassword;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
-	public int getDnum() {
-		return dnum;
+	public String getEmail() {
+		return email;
 	}
-	public void setDnum(int dnum) {
-		this.dnum = dnum;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public String getDname() {
-		return dname;
+	public String getSrc() {
+		return src;
 	}
-	public void setDname(String dname) {
-		this.dname = dname;
+	public void setSrc(String src) {
+		this.src = src;
 	}
-	public String getDphone() {
-		return dphone;
+	public String getPassword() {
+		return password;
 	}
-	public void setDphone(String dphone) {
-		this.dphone = dphone;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	
-
+	
+	
+	
 }

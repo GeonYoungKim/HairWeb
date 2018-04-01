@@ -21,18 +21,18 @@ public class DesignerController {
 	@RequestMapping(value = "/Designer")
 	public String studentList8(HttpServletRequest request) throws Exception {
 		
-		List<Map<String, Object>> designer_list = designerService.selectdesignerList();
-		request.setAttribute("designer_list", designer_list);	
+		List<Map<String, Object>> designerList = designerService.selectDesignerList();
+		request.setAttribute("designerList", designerList);	
 		
 		return "designer/designer";
 	}
 	
 	@RequestMapping(value = "/Designerprofile")
 	public String studentList78(HttpServletRequest request) throws Exception {
-		List<Map<String, Object>> select_search_hair=designerService.select_search_hair(Integer.parseInt(request.getParameter("dnum")));		
-		List<Map<String, Object>> designer_list = designerService.selectdesignerList();
-		request.setAttribute("designer_list", designer_list);	
-		request.setAttribute("select_search_hair", select_search_hair);
+		List<Map<String, Object>> selectSearchHair=designerService.selectSearchHair(Integer.parseInt(request.getParameter("dnum")));		
+		List<Map<String, Object>> designerList = designerService.selectDesignerList();
+		request.setAttribute("designerList", designerList);	
+		request.setAttribute("selectSearchHair", selectSearchHair);
 		return "designer/designerprofile";
 	}
 }

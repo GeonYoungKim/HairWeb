@@ -43,12 +43,12 @@ public class ReservationController {
 	@RequestMapping(value = "/reservation_select_day")
 	public String reservation_select_day(HttpServletRequest request) throws Exception {
 		System.out.println("reservation_select_day");
-		String select_date=request.getParameter("date");
+		String selectDate=request.getParameter("date");
 		
-		Map<String,Map<String, String>> reservation_possible_map = reservationService.select_reservation_possible_map(select_date);
+		Map<String,Map<String, String>> reservationPossibleMap = reservationService.selectReservationPossibleMap(selectDate);
 		
-		request.setAttribute("reservation_possible_map", reservation_possible_map);
-		request.setAttribute("select_date", select_date);
+		request.setAttribute("reservationPossibleMap", reservationPossibleMap);
+		request.setAttribute("selectDate", selectDate);
 		return "reservation/reservation_select_day_show";
 		
 	}
@@ -64,9 +64,9 @@ public class ReservationController {
 		String et=request.getParameter("et");
 		String designer=request.getParameter("designer");
 		
-		Reservation reservation=reservationService.set_before_input_customer(cut,dye,pum,date,st,et,designer);
+		Reservation reservation=reservationService.setBeforeInputCustomer(cut,dye,pum,date,st,et,designer);
 		
-		request.setAttribute("Reservation", reservation);
+		request.setAttribute("reservation", reservation);
 		return "reservation/reservation_input_customer";
 	}
 	@RequestMapping(value = "/reservation_complete")
@@ -83,17 +83,17 @@ public class ReservationController {
 		request.setCharacterEncoding(charsetType);
 		response.setCharacterEncoding(charsetType);
 		
-		String json_reservation=request.getParameter("json_reservation");
-		System.out.println(json_reservation);
+		String jsonReservation=request.getParameter("json_reservation");
+		System.out.println(jsonReservation);
 		
-		String certification_number=request.getParameter("msg");
-		System.out.println(certification_number);
+		String certificationNumber=request.getParameter("msg");
+		System.out.println(certificationNumber);
 		
-		certification_number=certification_number.substring(7, 11);
-		System.out.println(certification_number);
+		certificationNumber=certificationNumber.substring(7, 11);
+		System.out.println(certificationNumber);
 		
 		Gson gson=new Gson();		
-		Reservation reservation=gson.fromJson(json_reservation, Reservation.class);
+		Reservation reservation=gson.fromJson(jsonReservation, Reservation.class);
 		
 		
 		PrintWriter out=response.getWriter();
@@ -242,8 +242,8 @@ public class ReservationController {
 	    }
 	    
 	    request.setAttribute("phone",(request.getParameter("rphone")).replaceAll("-", ""));
-	    request.setAttribute("Reservation", reservation);
-	    request.setAttribute("certification_number", certification_number);
+	    request.setAttribute("reservation", reservation);
+	    request.setAttribute("certificationNumber", certificationNumber);
 	    
 	    return "reservation/certification_before";
 		
@@ -283,13 +283,13 @@ public class ReservationController {
 		Gson gson=new Gson();
 		request.setCharacterEncoding("UTF-8");
 		String phone=request.getParameter("phone");
-		String json_reservation=request.getParameter("json_reservation");		
-		Reservation reservation=gson.fromJson(json_reservation, Reservation.class);
+		String jsonReservation=request.getParameter("json_reservation");		
+		Reservation reservation=gson.fromJson(jsonReservation, Reservation.class);
 		
 		phone="0"+phone;
-		reservation.setRcustomerphone(phone);
-		json_reservation=gson.toJson(reservation);
-		response.getWriter().print(json_reservation);
+		reservation.setCustomerPhone(phone);
+		jsonReservation=gson.toJson(reservation);
+		response.getWriter().print(jsonReservation);
 		
 		
 	}
@@ -299,18 +299,17 @@ public class ReservationController {
 		response.setCharacterEncoding("UTF-8");
 		System.out.println("예약 완료");
 		Gson gson=new Gson();
-		String json_reservation=request.getParameter("reservation");
-		Reservation reservation=gson.fromJson(json_reservation, Reservation.class);
-		reservation.setRcustomername(request.getParameter("rcustomername"));
-		reservationService.insert_reservation(reservation);
-		Map<String, Object> designer=reservationService.getdesigner_dnum(reservation.getRdesignernum());
+		String jsonReservation=request.getParameter("reservation");
+		Reservation reservation=gson.fromJson(jsonReservation, Reservation.class);
+		reservation.setCustomerName(request.getParameter("rcustomername"));
+		reservationService.insertReservation(reservation);
+		Map<String, Object> designer=reservationService.getDesignerNum(reservation.getDesignerNum());
 		JsonObject jsonObject=new JsonObject();
-		jsonObject.addProperty("designer_phone",designer.get("dphone").toString() );
-		jsonObject.addProperty("customer_name",reservation.getRcustomername());
-		jsonObject.addProperty("reservation_date",reservation.getRdate() );
+		jsonObject.addProperty("designerPhone",designer.get("dphone").toString() );
+		jsonObject.addProperty("customerName",reservation.getCustomerName());
+		jsonObject.addProperty("reservationDate",reservation.getDate() );
 		System.out.println(jsonObject.toString());
 		response.getWriter().print(jsonObject.toString());
-		
 		
 	}
 	

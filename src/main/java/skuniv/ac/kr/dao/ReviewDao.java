@@ -25,7 +25,7 @@ public class ReviewDao extends ConnectDB{
 		return (List<Map<String,Object>>)selectList("review.getHair",r_num);
 	}
 	
-	public List<Map<String,Object>> select_search_designer(int r_num) {
+	public List<Map<String,Object>> selectSearchDesigner(int r_num) {
 		// TODO Auto-generated method stub
 		return (List<Map<String,Object>>)selectList("review.select_search_designer", r_num);
 	}

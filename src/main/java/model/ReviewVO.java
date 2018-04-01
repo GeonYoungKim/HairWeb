@@ -9,7 +9,7 @@ public class ReviewVO {
 	private String length;
 	private String farmar;
 	private String magic;
-	private String colorchange;
+	private String colorChange;
 	private String care;
 	private String etc;
 	
@@ -43,5 +43,30 @@ public class ReviewVO {
 	public void setFarmar(String farmar) {
 		this.farmar = farmar;
 	}
+	public String getMagic() {
+		return magic;
+	}
+	public void setMagic(String magic) {
+		this.magic = magic;
+	}
+	public String getColorChange() {
+		return colorChange;
+	}
+	public void setColorChange(String colorChange) {
+		this.colorChange = colorChange;
+	}
+	public String getCare() {
+		return care;
+	}
+	public void setCare(String care) {
+		this.care = care;
+	}
+	public String getEtc() {
+		return etc;
+	}
+	public void setEtc(String etc) {
+		this.etc = etc;
+	}
+	
 	
 }

@@ -12,31 +12,24 @@ import skuniv.ac.kr.connect.ConnectDB;
 @Repository("DesignerDao")
 public class DesignerDao extends ConnectDB{
 
-
-	
-	public List<Map<String, Object>> select_designer_List() {
-		// TODO Auto-generated method stub
-		return (List<Map<String, Object>>)selectList("designer.select_designer_List");
-	}
-
-	public Map<String,Object> getDesigner_by_name(String designer) {
+	public Map<String,Object> getDesignerByName(String designer) {
 		// TODO Auto-generated method stub
 		return (Map<String,Object>)selectOne("designer.getdesigner_by_name", designer);
 	}
 
 	
-	public List<Map<String, Object>> selectdesignerList() {
+	public List<Map<String, Object>> selectDesignerList() {
 		// TODO Auto-generated method stub
 		return (List<Map<String,Object>>)selectList("designer.selectdesignerList");
 	}
 	
-	public List<Map<String,Object>> select_search_hair(int dnum) {
+	public List<Map<String,Object>> selectSearchHair(int dnum) {
 		// TODO Auto-generated method stub
 		return (List<Map<String,Object>>)selectList("designer.select_search_hair", dnum);
 
 	}
 
-	public Map<String, Object> getdesigner_dnum(int rdesignernum) {
+	public Map<String, Object> getNum(int rdesignernum) {
 		
 		return (Map<String,Object>)selectOne("designer.getdesigner_dnum", rdesignernum);
 	}

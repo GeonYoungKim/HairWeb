@@ -4,51 +4,50 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 public class Reservation {
-	private int rnum;
-	private int rdesignernum;
-	private String rdate;
-	private String rcustomerphone;
-	private String ritem;
-	private String rcustomername;
+	private int num;
+	private int designerNum;
+	private String date;
+	private String customerPhone;
+	private String item;
+	private String customerName;
 	
 	
-	public String getRcustomername() {
-		return rcustomername;
+	public int getNum() {
+		return num;
 	}
-	public void setRcustomername(String rcustomername) {
-		this.rcustomername = rcustomername;
+	public void setNum(int num) {
+		this.num = num;
 	}
-	public int getRnum() {
-		return rnum;
+	public int getDesignerNum() {
+		return designerNum;
 	}
-	public void setRnum(int rnum) {
-		this.rnum = rnum;
+	public void setDesignerNum(int designerNum) {
+		this.designerNum = designerNum;
 	}
-	public int getRdesignernum() {
-		return rdesignernum;
+	public String getDate() {
+		return date;
 	}
-	public void setRdesignernum(int rdesignernum) {
-		this.rdesignernum = rdesignernum;
+	public void setDate(String date) {
+		this.date = date;
 	}
-	public String getRdate() {
-		return rdate;
+	public String getCustomerPhone() {
+		return customerPhone;
 	}
-	public void setRdate(String rdate) {
-		this.rdate = rdate;
+	public void setCustomerPhone(String customerPhone) {
+		this.customerPhone = customerPhone;
 	}
-	public String getRcustomerphone() {
-		return rcustomerphone;
+	public String getItem() {
+		return item;
 	}
-	public void setRcustomerphone(String rcustomerphone) {
-		this.rcustomerphone = rcustomerphone;
+	public void setItem(String item) {
+		this.item = item;
 	}
-	public String getRitem() {
-		return ritem;
+	public String getCustomerName() {
+		return customerName;
 	}
-	public void setRitem(String ritem) {
-		this.ritem = ritem;
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 	
 	
-
 }

@@ -15,28 +15,28 @@ import java.util.ArrayList;
 
 @Controller
 public class ReviewController {
-	List<Map<String,Object>> Review_search_list;
+	List<Map<String,Object>> reviewSearchList;
 	
 	@Resource(name = "ReviewService")
 	private ReviewService reviewService;
 	
 	@RequestMapping(value = "/Review")
 	public String Review(HttpServletRequest request) throws Exception {
-		List<Map<String, Object>> Review_List = reviewService.selectReviewList();
-		List<Map<String, Object>> Hair_List = reviewService.selectHairList();
-		request.setAttribute("Review_List", Review_List);	
-		request.setAttribute("Hair_List", Hair_List);	
+		List<Map<String, Object>> reviewList = reviewService.selectReviewList();
+		List<Map<String, Object>> hairList = reviewService.selectHairList();
+		request.setAttribute("reviewList", reviewList);	
+		request.setAttribute("hairList", hairList);	
 		
 		return "review/review";
 	}
 	
 	@RequestMapping(value = "/ReviewHair")
 	public String reviewHair(HttpServletRequest request) throws Exception {
-		List<Map<String, Object>> review_hair=reviewService.getHair(Integer.parseInt(request.getParameter("r_num")));	
-		List<Map<String, Object>> select_search_designer=reviewService.select_search_designer(Integer.parseInt(request.getParameter("r_num")));	
+		List<Map<String, Object>> reviewHair=reviewService.getHair(Integer.parseInt(request.getParameter("r_num")));	
+		List<Map<String, Object>> selectSearchDesigner=reviewService.selectSearchDesigner(Integer.parseInt(request.getParameter("r_num")));	
 		
-		request.setAttribute("review_hair", review_hair);
-		request.setAttribute("select_search_designer", select_search_designer);
+		request.setAttribute("reviewHair", reviewHair);
+		request.setAttribute("selectSearchDesigner", selectSearchDesigner);
 		
 		return "review/reviewhair";
 	}

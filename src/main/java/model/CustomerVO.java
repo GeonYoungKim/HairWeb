@@ -3,28 +3,29 @@ package model;
 import java.sql.Date;
 
 public class CustomerVO {
-	private String customerphone;
-	private String customername;
-	private Date customermembership;
-	public String getCustomerphone() {
-		return customerphone;
+	private String phone;
+	private String name;
+	private Date membership;
+	
+	public String getPhone() {
+		return phone;
 	}
-	public void setCustomerphone(String customerphone) {
-		this.customerphone = customerphone;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
-	public String getCustomername() {
-		return customername;
+	public String getName() {
+		return name;
 	}
-	public void setCustomername(String customername) {
-		this.customername = customername;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public Date getCustomermembership() {
-		return customermembership;
+	public Date getMembership() {
+		return membership;
 	}
-	public void setCustomermembership(Date customermembership) {
-		this.customermembership = customermembership;
+	public void setMembership(Date membership) {
+		this.membership = membership;
 	}
-
+	
 	
 	
 }

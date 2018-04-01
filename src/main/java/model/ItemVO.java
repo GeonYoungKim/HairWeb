@@ -2,20 +2,21 @@ package model;
 
 public class ItemVO {
 	
-	private String itemname;
-	private int itemprice;
-	public String getItemname() {
-		return itemname;
+	private String name;
+	private int price;
+	
+	public String getName() {
+		return name;
 	}
-	public void setItemname(String itemname) {
-		this.itemname = itemname;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public int getItemprice() {
-		return itemprice;
+	public int getPrice() {
+		return price;
 	}
-	public void setItemprice(int itemprice) {
-		this.itemprice = itemprice;
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	
-
+	
 }

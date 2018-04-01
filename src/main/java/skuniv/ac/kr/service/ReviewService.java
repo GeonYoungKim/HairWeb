@@ -25,8 +25,8 @@ public class ReviewService {
 		// TODO Auto-generated method stub
 		return reviewDao.getHair(r_num);
 	}
-	public List<Map<String,Object>> select_search_designer(int r_num) {
+	public List<Map<String,Object>> selectSearchDesigner(int r_num) {
 		// TODO Auto-generated method stub
-		return reviewDao.select_search_designer(r_num);
+		return reviewDao.selectSearchDesigner(r_num);
 	}
 }

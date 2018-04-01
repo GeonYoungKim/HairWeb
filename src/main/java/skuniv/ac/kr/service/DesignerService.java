@@ -12,12 +12,12 @@ public class DesignerService {
 	@Resource(name = "DesignerDao")
 	private DesignerDao designerDao;
 	
-	public List<Map<String, Object>> selectdesignerList() {
-		return designerDao.selectdesignerList();
+	public List<Map<String, Object>> selectDesignerList() {
+		return designerDao.selectDesignerList();
 	}
 	
-	public List<Map<String,Object>> select_search_hair(int dnum) {
+	public List<Map<String,Object>> selectSearchHair(int dnum) {
 		// TODO Auto-generated method stub
-		return designerDao.select_search_hair(dnum);
+		return designerDao.selectSearchHair(dnum);
 	}
 }
