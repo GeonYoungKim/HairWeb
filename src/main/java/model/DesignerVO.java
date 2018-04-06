@@ -1,6 +1,7 @@
 package model;
 
 public class DesignerVO {
+<<<<<<< HEAD
 	private int num;
 	private String name;
 	private String phone;
@@ -27,6 +28,12 @@ public class DesignerVO {
 	}
 	public String getEmail() {
 		return email;
+	}
+	private int dnum;
+	private String dname;
+	private String dphone;
+	public int getDnum() {
+		return dnum;
 	}
 	public void setEmail(String email) {
 		this.email = email;
