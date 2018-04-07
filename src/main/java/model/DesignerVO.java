@@ -1,7 +1,6 @@
 package model;
 
 public class DesignerVO {
-<<<<<<< HEAD
 	private int num;
 	private String name;
 	private String phone;
