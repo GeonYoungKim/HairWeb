@@ -3,6 +3,8 @@
 
 교내 미용실인 블루 헤어샵의 홈페이지입니다.
 
+spring framework, mybais, mysql, ajax, jquery, js, html, css
+
 기능 총 아래 4개입니다.
 
 * 예약
