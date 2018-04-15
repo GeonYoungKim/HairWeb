@@ -10,7 +10,7 @@
 * 디자이너 
 * QnA
 
-
-![designer](./img/designer.jpg)
+![designer](./img/reservation.jpg)
+![designer](./img/qna.jpg)
 ![designer](./img/designer.jpg)
 
