@@ -10,6 +10,7 @@
 * 디자이너 
 * QnA
 
-screenshot
+
+![designer](./img/designer.jpg)
 ![designer](./img/designer.jpg)
 
