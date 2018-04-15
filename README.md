@@ -11,3 +11,6 @@
 * QnA
 
 
+![designer](./img/designer.jpg)
+![designer](./img/designer.jpg)
+
