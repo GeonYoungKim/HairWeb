@@ -1,7 +1,6 @@
 # HairWeb
-서경대학교의 미용실 블루샵의 예약을 위한 웹어플리케이션
 
-교내 미용실인 블루 헤어샵의 홈페이지입니다.
+#### 서경대학교의 미용실 블루샵 웹어플리케이션
 
 spring framework, mybais, mysql, ajax, jquery, js, html, css
 
