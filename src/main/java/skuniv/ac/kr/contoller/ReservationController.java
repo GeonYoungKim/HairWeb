@@ -280,7 +280,7 @@ public class ReservationController {
 		Gson gson=new Gson();
 		request.setCharacterEncoding("UTF-8");
 		String phone=request.getParameter("phone");
-<<<<<<< HEAD
+
 		String jsonReservation=request.getParameter("json_reservation");		
 		Reservation reservation=gson.fromJson(jsonReservation, Reservation.class);
 		
@@ -288,11 +288,9 @@ public class ReservationController {
 		reservation.setCustomerPhone(phone);
 		jsonReservation=gson.toJson(reservation);
 		response.getWriter().print(jsonReservation);
-=======
-		String json_reservation=request.getParameter("json_reservation");
->>>>>>> parent of 1948bc4... 예약하기 버튼 클릭 시 모든 절차가 완성되 고객 예약 완료함, 동시에 해당 디자이너에게 예약 문자 전송
+
 		
-		JsonObject jsonObject=gson.fromJson(json_reservation, JsonObject.class);
+		JsonObject jsonObject=gson.fromJson(jsonReservation, JsonObject.class);
 		
 		phone="0"+phone;
 		System.out.println(phone);
@@ -302,7 +300,7 @@ public class ReservationController {
 	@RequestMapping(value = "/and_test")
 	public void and_test(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("UTF-8");
-<<<<<<< HEAD
+
 		response.setCharacterEncoding("UTF-8");
 		System.out.println("예약 완료");
 		Gson gson=new Gson();
@@ -476,13 +474,11 @@ public class ReservationController {
 	        out.println("<script>location.href='"+returnurl+"';</script>");
 	    }
 	    
-	   
-	    
+	    System.out.println(request.getParameter("test"));
+		System.out.println("and_test");	    
 	    return "redirect:/reservation";
-=======
-		System.out.println(request.getParameter("test"));
-		System.out.println("and_test");
->>>>>>> parent of 1948bc4... 예약하기 버튼 클릭 시 모든 절차가 완성되 고객 예약 완료함, 동시에 해당 디자이너에게 예약 문자 전송
+
+		
 		
 	}
 }

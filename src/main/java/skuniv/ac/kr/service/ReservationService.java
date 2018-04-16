@@ -99,7 +99,7 @@ public class ReservationService {
 		reservation.setItem(choiceHairList);
 
 		
-		reservation=reservationDao.getReservation_by_dnum_rdate(reservation);
+		reservation=reservationDao.getReservationByNumAndDate(reservation);
 		
 
 		return reservation;
@@ -113,10 +113,7 @@ public class ReservationService {
 	public Map<String, Object> getDesignerNum(int rdesignernum) {
 		
 		return designerDao.getNum(rdesignernum);
-=======
 		
-		return reservation;
->>>>>>> parent of 1948bc4... 예약하기 버튼 클릭 시 모든 절차가 완성되 고객 예약 완료함, 동시에 해당 디자이너에게 예약 문자 전송
 	}
 
 }
