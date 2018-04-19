@@ -15,5 +15,6 @@ spring framework, mybais, mysql, ajax, jquery, js, html, css
 
 ![designer](./img/reservation.JPG)
 ![designer](./img/qna.JPG)
+![designer](./img/auth.JPG)
 ![designer](./img/designer.jpg)
 
