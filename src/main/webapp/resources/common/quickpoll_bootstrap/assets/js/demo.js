@@ -619,10 +619,7 @@ demo = {
                 week: " MMMM D YYYY", // September 2015
                 day: 'D MMM, YYYY'  // Tuesday, Sep 8, 2015
             },
-          //location.replace("http://localhost:8080/kr/reservation_select_day?y="+y+"&m="+event_title+"&d="+d);  
             select: function(start, end) {
-            	
-            	// on select we show the Sweet Alert modal with an input
             	location.replace("http://localhost:8080/kr/reservation_select_day?date="+start.format('YYYY-MM-DD'));
 			},
 			

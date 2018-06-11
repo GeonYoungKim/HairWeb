@@ -197,19 +197,20 @@
         		
         		if(input_number==certification_number){
         			$(document).ready(function(){
-        			 $.ajax({	
-        		            type : "GET",
-        		            url : "http://localhost:8080/kr/confirm_certification?phone="+<%=phone%>+"&json_reservation="+encodeURI(json_reservation_parse),
-        		            dataType : "text",
-        		            error : function(){
-        		                alert('통신실패!!');
-        		            },
-        		            success : function(data){
-        		                alert("통신데이터 값 : " + data) ;
-        		               
-        		            }
-        		             
-        		        });
+        				$.ajax({
+        					url : "http://localhost:8080/kr/confirm_certification",
+        					contentType : false,
+        					processData : false,
+        					contentType : "application/json",
+        					data : JSON.stringify({
+        						phone : <%=phone%>,
+        						json_reservation : encodeURI(json_reservation_parse)
+        					}), // Setting the data attribute of ajax with file_data
+        					type : 'post',
+        					success : function(data) {
+        						alert("통신데이터 값 : " + data) ;
+        					}
+        				});
         			});
         		}else{
         			alert("틀렸습니다. 다시 입력해주세요.");

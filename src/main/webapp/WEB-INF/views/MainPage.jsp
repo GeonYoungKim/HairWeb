@@ -52,7 +52,7 @@ body{
               <a class="nav-link" href="/kr/Review"><font size=5>Review</font></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/kr/QnA"><font size=5>Q&A</font></a>
+              <a class="nav-link" href="/kr/QnA?QnA_page_num=0"><font size=5>Q&A</font></a>
             </li>
           </ul>
         </div>

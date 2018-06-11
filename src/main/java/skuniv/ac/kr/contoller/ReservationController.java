@@ -16,8 +16,15 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -27,53 +34,61 @@ import skuniv.ac.kr.service.ReservationService;
 
 @Controller
 public class ReservationController {
-	
+	@Autowired
+	Gson gson;
 	
 	@Resource(name = "ReservationService")
 	private ReservationService reservationService;
 	
-	@RequestMapping(value = "/reservation")
-	public String reservation(HttpServletRequest request) throws Exception {
-		System.out.println("reservation");
-		return "reservation/reservation";
+	@GetMapping(value = "/reservation")
+	public ModelAndView reservation(ModelAndView modelAndView) throws Exception {
+		modelAndView.setViewName("reservation/reservation");
+		return modelAndView;
 	}
-	@RequestMapping(value = "/reservation_select_day")
-	public String reservation_select_day(HttpServletRequest request) throws Exception {
+	@GetMapping(value = "/reservation_select_day")
+	public ModelAndView reservation_select_day(ModelAndView modelAndView,@RequestParam("date") String date) throws Exception {
+		modelAndView.setViewName("reservation/reservation_select_day_show");
 		System.out.println("reservation_select_day");
-		String selectDate=request.getParameter("date");
+		String selectDate=date;
 		
 		Map<String,Map<String, String>> reservationPossibleMap = reservationService.selectReservationPossibleMap(selectDate);
 		
-		request.setAttribute("reservationPossibleMap", reservationPossibleMap);
-		request.setAttribute("selectDate", selectDate);
-		return "reservation/reservation_select_day_show";
-		
+		modelAndView.addObject("reservationPossibleMap", reservationPossibleMap);
+		modelAndView.addObject("selectDate", selectDate);
+		return modelAndView;
 	}
-	@RequestMapping(value = "/reservation_input_customer")
-	public String test(HttpServletRequest request) throws Exception {
-		System.out.println("reservation_input_customer");
+	@PostMapping(value = "/reservation_input_customer")
+	public ModelAndView reservation_input_customer(
+			@RequestParam("cut") String cutParam,
+			@RequestParam("dye") String dyeParam,
+			@RequestParam("pum") String pumParam,
+			@RequestParam("date") String dateParam,
+			@RequestParam("st") String stParam,
+			@RequestParam("et") String etParam,
+			@RequestParam("designer") String designerParam,
+			ModelAndView modelAndView) throws Exception {
 		
-		String cut=request.getParameter("cut");
-		String dye=request.getParameter("dye");
-		String pum=request.getParameter("pum");
-		String date=request.getParameter("date");
-		String st=request.getParameter("st");
-		String et=request.getParameter("et");
-		String designer=request.getParameter("designer");
+		System.out.println("reservation_input_customer");
+		modelAndView.setViewName("reservation/reservation_input_customer");
+		String cut=cutParam;
+		String dye=dyeParam;
+		String pum=pumParam;
+		String date=dateParam;
+		String st=stParam;
+		String et=etParam;
+		String designer=designerParam;
 		
 		Reservation reservation=reservationService.setBeforeInputCustomer(cut,dye,pum,date,st,et,designer);
-		
-		request.setAttribute("reservation", reservation);
-		return "reservation/reservation_input_customer";
+		modelAndView.addObject("reservation", reservation);
+		return modelAndView;
 	}
-	@RequestMapping(value = "/reservation_complete")
-	public String reservation_complete(HttpServletRequest request) throws Exception {
-		
-		
-		return "reservation/reservation_complete";
+	@GetMapping(value = "/reservation_complete")
+	public ModelAndView reservation_complete(ModelAndView modelAndView) throws Exception {
+		modelAndView.setViewName("reservation/reservation_complete");
+		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/sms")
+	@GetMapping(value = "/sms")
 	public String sms(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
 		String charsetType = "EUC-KR"; 
@@ -275,29 +290,20 @@ public class ReservationController {
         return result ;
     }
 	
-	@RequestMapping(value = "/confirm_certification")
-	public String confirm_certification(HttpServletRequest request,HttpServletResponse response) throws Exception {
+	@PostMapping(value = "/confirm_certification")
+	public @ResponseBody String confirm_certification(@RequestBody Map<String, Object> data) throws Exception {
 		Gson gson=new Gson();
-		request.setCharacterEncoding("UTF-8");
-		String phone=request.getParameter("phone");
+		String phone=data.get("phone").toString();
 
-		String jsonReservation=request.getParameter("json_reservation");		
+		String jsonReservation=data.get("json_reservation").toString();		
 		Reservation reservation=gson.fromJson(jsonReservation, Reservation.class);
 		
 		phone="0"+phone;
 		reservation.setCustomerPhone(phone);
 		jsonReservation=gson.toJson(reservation);
-		response.getWriter().print(jsonReservation);
-
-		
-		JsonObject jsonObject=gson.fromJson(jsonReservation, JsonObject.class);
-		
-		phone="0"+phone;
-		System.out.println(phone);
-		System.out.println(jsonObject.get("rnum"));
-		return "reservation/confirmed_certification";
+		return jsonReservation;
 	}
-	@RequestMapping(value = "/and_test")
+	@GetMapping(value = "/and_test")
 	public void and_test(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("UTF-8");
 
@@ -318,7 +324,7 @@ public class ReservationController {
 		
 	}
 	
-	@RequestMapping(value = "/sms_desinger")
+	@GetMapping(value = "/sms_desinger")
 	public String sms_desinger(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
 		String charsetType = "EUC-KR"; 

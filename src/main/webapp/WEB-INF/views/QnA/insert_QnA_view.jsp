@@ -67,6 +67,34 @@ button[type=submit]{
 	background-color: white;
 }
 </style>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+<script type="text/javascript">
+function insertQnA(){
+	var writerValue = $('#writer').val();
+	var bodyValue = $('#body').val();
+	var prefaceValue = $('#preface').val();
+	var titleValue = $('#title').val();
+	
+	$.ajax({
+		url : "http://localhost:8080/kr/QnA_insert",
+		contentType : false,
+		processData : false,
+		contentType : "application/json",
+		data : JSON.stringify({
+			writer : writerValue,
+			body : bodyValue,
+			preface:prefaceValue,
+			title:titleValue
+		}), // Setting the data attribute of ajax with file_data
+		type : 'post',
+		success : function(data) {
+			location.href = "/kr/QnA?QnA_page_num=0";
+		}
+	});
+}
+	
+</script>
 </head>
 
 <body class="masthead"
@@ -94,7 +122,7 @@ button[type=submit]{
 					<li class="nav-item"><a class="nav-link"
 						href="resources/common/bootstrap/post.html"><font size=5>Review</font></a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="/kr/QnA"><font size=5>Q&A</font></a></li>
+					<li class="nav-item"><a class="nav-link" href="/kr/QnA?QnA_page_num=0"><font size=5>Q&A</font></a></li>
 				</ul>
 			</div>
 		</div>
@@ -103,18 +131,18 @@ button[type=submit]{
 	<div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <form action="/kr/QnA_insert" id="contactForm" novalidate>
+          
             <div class="control-group" id="top">
               <div class="form-group floating-label-form-group controls">
                 <label>글쓴이</label>
-                <input type="text" name="QnA_writer"class="form-control" placeholder="글쓴이" id="name">
+                <input type="text" name="QnA_writer"class="form-control" placeholder="글쓴이" id="writer">
                 <p class="help-block text-danger"></p>
               </div>
             </div>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
                 <label>머리말</label>
-                <input type="text" name="QnA_preface" class="form-control" placeholder="머리말" id="email">
+                <input type="text" name="QnA_preface" class="form-control" placeholder="머리말" id="preface">
                 <p class="help-block text-danger"></p>
                 
               </div>
@@ -122,7 +150,7 @@ button[type=submit]{
             <div class="control-group">
               <div class="form-group col-xs-12 floating-label-form-group controls">
                 <label>제목</label>
-                <input type="text" name="QnA_title" class="form-control" placeholder="제목" id="phone">
+                <input type="text" name="QnA_title" class="form-control" placeholder="제목" id="title">
                 <p class="help-block text-danger"></p>
                 
               </div>
@@ -130,17 +158,15 @@ button[type=submit]{
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
                 <label>내용</label>
-                <textarea name="QnA_body"rows="10" class="form-control" placeholder="내용" id="message"></textarea>
+                <textarea name="QnA_body"rows="10" class="form-control" placeholder="내용" id="body"></textarea>
                 <p class="help-block text-danger"></p>
-                
               </div>
             </div>
             <br>
-            <div id="success"></div>
-            <div class="form-group">
-              <input type="submit" class="btn btn-primary" id="sendMessageButton" value="글등록">
-            </div>
-          </form>
+            
+            <button onclick="insertQnA()">글 등록</button></td>
+			
+          
         </div>
       </div>
     </div>

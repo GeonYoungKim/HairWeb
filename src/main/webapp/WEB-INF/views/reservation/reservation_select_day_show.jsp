@@ -113,12 +113,12 @@ body {
 		
 		var a=0;
 		
- 		var date='<%=select_date%>';
+ 		var dateValue='<%=select_date%>';
     	demo2={
     			showSwal: function(type,time,designer){
     		        if(type == 'input-field'){
-    		    		var st=time;
-    		    		var et=time;
+    		    		var stValue=time;
+    		    		var etValue=time;
     		    		var confirm_time=time;
     		    		var d=designer;
     		    		var confirm=0;
@@ -200,7 +200,31 @@ body {
     		                				demo2.showNotification('top','center');  
     		                				window.close();
     		                			}else{
-    		                				location.replace("http://localhost:8080/kr/reservation_input_customer?cut="+$('#cut').prop('checked')+"&dye="+$('#dye').prop('checked')+"&pum="+$('#pum').prop('checked')+"&date="+date+"&st="+st+"&designer="+d+"&et="+et);
+    		                				
+    		                				function post(URL, PARAMS) {
+    		                					var temp=document.createElement("form");
+    		                					temp.action=URL;
+    		                					temp.method="POST";
+    		                					temp.style.display="none";
+    		                					for(var x in PARAMS) {
+    		                					var opt=document.createElement("textarea");
+    		                					opt.name=x;
+    		                					opt.value=PARAMS[x];
+    		                					temp.appendChild(opt);
+    		                					}
+    		                					document.body.appendChild(temp);
+    		                					temp.submit();
+    		                					return temp;
+    		                					}
+    		                					post("http://localhost:8080/kr/reservation_input_customer", {
+    		                						cut : $('#cut').prop('checked'),
+    		                						dye : $('#dye').prop('checked'),
+    		                						pum : $('#pum').prop('checked'),
+    		                						date : dateValue,
+    		                						st : stValue,
+    		                						et : etValue,
+    		                						designer : d
+    		                					})
     		                			}
     		                		}
     		                	});

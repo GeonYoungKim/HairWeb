@@ -1,3 +1,4 @@
+<%@page import="org.springframework.web.bind.annotation.ModelAttribute"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -13,8 +14,10 @@
 <meta name="author" content="">
 
 <title>서경 Blue Shop</title>
-<%List<Map<String, Object>> QnA_list=(List<Map<String,Object>>)request.getAttribute("QnA_list"); 	
-	int QnAunit=(QnA_list.size())/10;
+<%
+
+	List<Map<String, Object>> listQnA=(List<Map<String,Object>>)request.getAttribute("listQnA"); 	
+	int QnAunit=(listQnA.size())/10;
 	int QnA_page_num=(int)request.getAttribute("QnA_page_num");
 	System.out.println(QnA_page_num);
 	int ten=1;
@@ -109,38 +112,38 @@ button[type=submit]{
 					<TR><TD align="center" WIDTH="70">번호</TD><TD align="center" WIDTH="80">머리말</TD><TD align="center" WIDTH="650">제목</TD><TD align="center" WIDTH="150">글쓴이</TD>
 					
 					<%
-						if(QnA_list.size()>10){
+						if(listQnA.size()>10){
 							 if(QnA_page_num==0){
 								for(int i=0;i<10;i++){
 								%>
-								<tr style="cursor:pointer;" onclick="location='/kr/QnA_one_view?QnA_no=<%=QnA_list.get(i).get("QnA_no")%>'">
-										<TD align="center"><%=QnA_list.get(i).get("QnA_no")%></TD>
-										<TD align="center"><%=QnA_list.get(i).get("QnA_preface")%></TD>
-										<%if((Integer.parseInt(QnA_list.get(i).get("QnA_answer_flag")+""))==0){
+								<tr style="cursor:pointer;" onclick="location='/kr/QnA_one_view?QnA_no=<%=listQnA.get(i).get("QnA_no")%>'">
+										<TD align="center"><%=listQnA.get(i).get("QnA_no")%></TD>
+										<TD align="center"><%=listQnA.get(i).get("QnA_preface")%></TD>
+										<%if((Integer.parseInt(listQnA.get(i).get("QnA_answer_flag")+""))==0){
 											%>
-											<TD align="center"><%=QnA_list.get(i).get("QnA_title")%></TD>
+											<TD align="center"><%=listQnA.get(i).get("QnA_title")%></TD>
 										<% }else{
 											%>
-											<TD align="center"><%=QnA_list.get(i).get("QnA_title")%>  <img src="resources/common/bootstrap/img/answer.png" width="50px" height="30px"></TD>
+											<TD align="center"><%=listQnA.get(i).get("QnA_title")%>  <img src="resources/common/bootstrap/img/answer.png" width="50px" height="30px"></TD>
 										<% }%>
 										
-										<TD align="center"><%=QnA_list.get(i).get("QnA_writer")%></TD>
+										<TD align="center"><%=listQnA.get(i).get("QnA_writer")%></TD>
 										</tr>
 								<%							
 						}}else{
-							for(int i=QnA_page_num-10;i<QnA_list.size();i++){
+							for(int i=QnA_page_num-10;i<listQnA.size();i++){
 								%>
-								<tr style="cursor:pointer;" onclick="location='/kr/QnA_one_view?QnA_no=<%=QnA_list.get(i).get("QnA_no")%>'">
-										<TD align="center"><%=QnA_list.get(i).get("QnA_no")%></TD>
-										<TD align="center"><%=QnA_list.get(i).get("QnA_preface")%></TD>
-										<%if((Integer.parseInt(QnA_list.get(i).get("QnA_answer_flag")+""))==0){
+								<tr style="cursor:pointer;" onclick="location='/kr/QnA_one_view?QnA_no=<%=listQnA.get(i).get("QnA_no")%>'">
+										<TD align="center"><%=listQnA.get(i).get("QnA_no")%></TD>
+										<TD align="center"><%=listQnA.get(i).get("QnA_preface")%></TD>
+										<%if((Integer.parseInt(listQnA.get(i).get("QnA_answer_flag")+""))==0){
 											%>
-											<TD align="center"><%=QnA_list.get(i).get("QnA_title")%></TD>
+											<TD align="center"><%=listQnA.get(i).get("QnA_title")%></TD>
 										<% }else{
 											%>
-											<TD align="center"><%=QnA_list.get(i).get("QnA_title")%>  <img src="resources/common/bootstrap/img/answer.png" width="50px" height="30px"></TD>
+											<TD align="center"><%=listQnA.get(i).get("QnA_title")%>  <img src="resources/common/bootstrap/img/answer.png" width="50px" height="30px"></TD>
 										<% }%>
-										<TD align="center"><%=QnA_list.get(i).get("QnA_writer")%></TD>
+										<TD align="center"><%=listQnA.get(i).get("QnA_writer")%></TD>
 										</tr>
 								
 								<%		
@@ -150,18 +153,18 @@ button[type=submit]{
 								ten++;
 						
 						}}}else{
-							for(int i=0;i<QnA_list.size();i++){ %>
-								<tr style="cursor:pointer;" onclick="location='/kr/QnA_one_view?QnA_no=<%=QnA_list.get(i).get("QnA_no")%>'">
-									<TD align="center"><%=QnA_list.get(i).get("QnA_no")%></TD>
-									<TD align="center"><%=QnA_list.get(i).get("QnA_preface")%></TD>
-									<%if((Integer.parseInt(QnA_list.get(i).get("QnA_answer_flag")+""))==0){
+							for(int i=0;i<listQnA.size();i++){ %>
+								<tr style="cursor:pointer;" onclick="location='/kr/QnA_one_view?QnA_no=<%=listQnA.get(i).get("QnA_no")%>'">
+									<TD align="center"><%=listQnA.get(i).get("QnA_no")%></TD>
+									<TD align="center"><%=listQnA.get(i).get("QnA_preface")%></TD>
+									<%if((Integer.parseInt(listQnA.get(i).get("QnA_answer_flag")+""))==0){
 											%>
-											<TD align="center"><%=QnA_list.get(i).get("QnA_title")%></TD>
+											<TD align="center"><%=listQnA.get(i).get("QnA_title")%></TD>
 										<% }else{
 											%>
-											<TD align="center"><%=QnA_list.get(i).get("QnA_title")%>  <img src="resources/common/bootstrap/img/answer.png" width="50px" height="30px"></TD>
+											<TD align="center"><%=listQnA.get(i).get("QnA_title")%>  <img src="resources/common/bootstrap/img/answer.png" width="50px" height="30px"></TD>
 										<% }%>
-									<TD align="center"><%=QnA_list.get(i).get("QnA_writer")%></TD>
+									<TD align="center"><%=listQnA.get(i).get("QnA_writer")%></TD>
 									</tr>
 								<%}} %>						
 					</table>
